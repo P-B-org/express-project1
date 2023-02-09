@@ -17,13 +17,13 @@ module.exports.doSignup = (req, res, next) => {
     });
   };
 
-  const { password, repeatPassword, username, email } = req.body;
+  const { password, repeatPassword, email } = req.body;
 
   if (password && repeatPassword && password === repeatPassword) {
-    User.findOne({ username, email })
+    User.findOne({ email })
       .then((user) => {
         if (user) {
-          renderWithErrors({ email: "Username or email already in use" });
+          renderWithErrors({ email: "Email already in use" });
         } else {
           return User.create(req.body).then((userCreated) => {
             console.log({ userCreated });
