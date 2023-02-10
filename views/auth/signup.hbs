@@ -16,10 +16,20 @@
     </div>
   </div>
   <div class="mb-3">
-    <label for="dateOfBirth" class="form-label">Date of birth</label>
-    <input type="date" value="{{user.dateOfBirth}}" class="form-control {{#if errors.dateOfBirth}}is-invalid{{/if}}" id="dateOfBirth" name="dateOfBirth">
-    <div class="invalid-feedback">
-      {{errors.dateOfBirth}}
+    <label class="form-label">Date of birth</label>
+    <div class="d-flex gap-3">
+      <input placeholder="Day" type="number" value="{{user.dayOfBirth}}" class="form-control {{#if errors.dayOfBirth}}is-invalid{{/if}}" name="dayOfBirth">
+      <div class="invalid-feedback">
+        {{errors.dayOfBirth}}
+      </div>
+      <input placeholder="Month" type="number" value="{{user.monthOfBirth}}" class="form-control {{#if errors.monthOfBirth}}is-invalid{{/if}}" name="monthOfBirth">
+      <div class="invalid-feedback">
+        {{errors.monthOfBirth}}
+      </div>
+      <input placeholder="Year" type="number" value="{{user.yearOfBirth}}" class="form-control {{#if errors.yearOfBirth}}is-invalid{{/if}}" name="yearOfBirth">
+      <div class="invalid-feedback">
+        {{errors.yearOfBirth}}
+      </div>
     </div>
   </div>
   <div class="mb-3">

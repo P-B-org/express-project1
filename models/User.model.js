@@ -28,10 +28,18 @@ const userSchema = new mongoose.Schema(
     },
     lastName: {
       type: String,
-      required: [true, "Please, insert your first name"],
+      required: [true, "Please, insert your last name"],
     },
-    dateOfBirth: {
-      type: Date,
+    dayOfBirth: {
+      type: Number,
+      required: true,
+    },
+    monthOfBirth: {
+      type: Number,
+      required: true,
+    },
+    yearOfBirth: {
+      type: Number,
       required: true,
     },
     timeOfBirth: {
