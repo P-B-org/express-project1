@@ -2,6 +2,7 @@ const User = require("../models/User.model");
 const mongoose = require("mongoose");
 const passport = require('passport');
 const { GENERIC_ERROR_MESSAGE } = require('../config/passport.config');
+const { getSunSign, getMoonSign, getAscendantSign } = require("../public/js/utils");
 
 module.exports.signup = (req, res, next) => {
   res.render("auth/signup");
@@ -27,6 +28,14 @@ module.exports.doSignup = (req, res, next) => {
         if (user) {
           renderWithErrors({ email: "Email already in use" });
         } else {
+          const hour = Number(req.body.timeOfBirth.slice(0, 2));
+
+          const sunSign = getSunSign(req.body.dayOfBirth, req.body.monthOfBirth);
+          const moonSign = getMoonSign(req.body.dayOfBirth, req.body.monthOfBirth, req.body.yearOfBirth);
+          const ascendantSign = getAscendantSign(sunSign, hour);
+
+          console.log("***********************", sunSign, moonSign, ascendantSign)
+          
           return User.create(req.body).then((userCreated) => {
             console.log({ userCreated });
             res.redirect("/login");
