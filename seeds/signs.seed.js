@@ -2,6 +2,7 @@ require("../config/db.config");
 
 const mongoose = require("mongoose");
 const Sign = require("../models/Sign.model");
+const Compatibility = require("../models/Compatibility.model");
 
 const signs = require("../signs.json");
 const compatibilities = require("../compatibility.json");
@@ -27,12 +28,12 @@ mongoose.connection.once("open", () => {
               createdSigns.find((createdSign) => createdSign.name === sign).id
           ),
         };
-        //return Compatibility.create(mappedCompatibilities)
       });
+      return Compatibility.create(mappedCompatibilities)
     })
-    // .then(createdCompatibilities => {
-    //     console.log('compabilities')
-    // })
+    .then(createdCompatibilities => {
+      console.log('Compabilities created')
+    })
     .catch((err) => console.error(err))
     .finally(() => {
       mongoose.connection.close(function () {
