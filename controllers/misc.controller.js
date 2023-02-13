@@ -1,3 +1,3 @@
-module.exports.index = (req, res, next) => {
-    res.render('misc/index')
+module.exports.home = (req, res, next) => {
+    res.render('misc/home')
 }
