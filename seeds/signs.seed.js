@@ -23,10 +23,9 @@ mongoose.connection.once("open", () => {
       const mappedCompatibilities = compatibilities.map((compatibility) => {
         return {
           ...compatibility,
-          sign: compatibility.signs.map(
-            (sign) =>
-              createdSigns.find((createdSign) => createdSign.name === sign).id
-          ),
+          signs: compatibility.signs.map(sign => {
+            return createdSigns.find((createdSign) => createdSign.name === sign).id
+          }),
         };
       });
       return Compatibility.create(mappedCompatibilities)

@@ -35,7 +35,7 @@ const userSchema = new mongoose.Schema(
       required: true,
     },
     monthOfBirth: {
-      type: String,
+      type: Number,
       required: true,
     },
     yearOfBirth: {
@@ -46,6 +46,18 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    sunSign: {
+      type: mongoose.Types.ObjectId,
+      required: true,
+    },
+    moonSign: {
+      type: mongoose.Types.ObjectId,
+      required: true,
+    },
+    ascendantSign: {
+      type: mongoose.Types.ObjectId,
+      required: true,
+    }
   },
   {
     timestamps: true,
@@ -67,10 +79,9 @@ userSchema.pre("save", function (next) {
   }
 });
 
-userSchema.methods.checkPassword = function(passwordToCompare) {
+userSchema.methods.checkPassword = function (passwordToCompare) {
   return bcrypt.compare(passwordToCompare, this.password);
-}
-
+};
 
 const User = mongoose.model("User", userSchema);
 module.exports = User;
