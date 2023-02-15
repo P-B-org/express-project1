@@ -1,4 +1,5 @@
 const User = require("../models/User.model");
+const Sign = require("../models/Sign.model");
 const mongoose = require("mongoose");
 const passport = require('passport');
 const { GENERIC_ERROR_MESSAGE } = require('../config/passport.config');
@@ -20,7 +21,7 @@ module.exports.doSignup = (req, res, next) => {
     });
   };
 
-  const { password, repeatPassword, email } = req.body;
+  const { password, repeatPassword, email, timeOfBirth, dayOfBirth, monthOfBirth, yearOfBirth } = req.body;
 
   if (password && repeatPassword && password === repeatPassword) {
     User.findOne({ email })
@@ -28,18 +29,33 @@ module.exports.doSignup = (req, res, next) => {
         if (user) {
           renderWithErrors({ email: "Email already in use" });
         } else {
-          const hour = Number(req.body.timeOfBirth.slice(0, 2));
+          const hour = Number(timeOfBirth.slice(0, 2));
 
-          const sunSign = getSunSign(req.body.dayOfBirth, req.body.monthOfBirth);
-          const moonSign = getMoonSign(req.body.dayOfBirth, req.body.monthOfBirth, req.body.yearOfBirth);
+          const sunSign = getSunSign(Number(dayOfBirth), Number(monthOfBirth));
+          const moonSign = getMoonSign(Number(dayOfBirth), Number(monthOfBirth), Number(yearOfBirth));
           const ascendantSign = getAscendantSign(sunSign, hour);
 
           console.log("***********************", sunSign, moonSign, ascendantSign)
-          
-          return User.create(req.body).then((userCreated) => {
-            console.log({ userCreated });
-            res.redirect("/login");
-          });
+          const findSignPromises = [sunSign, moonSign, ascendantSign].map(sign => Sign.findOne({ name: sign}))
+
+          return Promise.all(findSignPromises)
+          .then(signs => {
+           const [sunSign, moonSign, ascendantSign] = signs;
+           console.log(signs)
+           req.body = {
+            ...req.body,
+            sunSign: sunSign.id,
+            moonSign: moonSign.id,
+            ascendantSign: ascendantSign.id
+           }
+
+           console.log("*******req.body antes de guardar user", req.body)
+           return User.create(req.body)
+           .then((userCreated) => {
+             console.log({ userCreated });
+             res.redirect("/login");
+           });
+          })
         }
       })
       .catch((err) => {
