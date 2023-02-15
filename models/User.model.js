@@ -49,14 +49,17 @@ const userSchema = new mongoose.Schema(
     sunSign: {
       type: mongoose.Types.ObjectId,
       required: true,
+      ref: "Sign",
     },
     moonSign: {
       type: mongoose.Types.ObjectId,
       required: true,
+      ref: "Sign",
     },
     ascendantSign: {
       type: mongoose.Types.ObjectId,
       required: true,
+      ref: "Sign",
     }
   },
   {

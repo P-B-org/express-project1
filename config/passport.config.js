@@ -8,7 +8,8 @@ passport.serializeUser((user, next) => {
 
 passport.deserializeUser((id, next) => {
   User.findById(id)
-    .then(user => {
+  .populate("sunSign moonSign ascendantSign")
+    .then(user => { 
       next(null, user)
     })
     .catch(err => next(err))
