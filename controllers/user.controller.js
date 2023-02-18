@@ -5,7 +5,7 @@ const { requestDailyHoroscope } = require("../services/base.service");
 module.exports.explore = (req, res, next) => {
   User.find()
     .then((users) => {
-      res.render("explore", { users });
+      res.render("user/explore", { users });
     })
     .catch(next);
 };
@@ -23,7 +23,7 @@ module.exports.profile = (req, res, next) => {
 module.exports.peopleProfile = (req, res, next) => {
     User.findById(req.params.id)
     .then(user => {
-        res.render("otherProfile", { user })
+        res.render("user/otherProfile", { user })
     })
     .catch(next);
 }
@@ -32,14 +32,21 @@ module.exports.follow = (req, res, next) => {
   const follower = req.user.id;
   const followed = req.params.id;
 
+  const follow = {
+    follower,
+    followed,
+  }
+
   Follow.findOne({ follower, followed })
     .then((dbFollow) => {
       if (dbFollow) {
-        return Follow.findByIdAndDelete(dbFollow.id).then((createdFollow) => {
-          res.status(204).json({ follow: createdFollow });
+        return Follow.findByIdAndDelete(dbFollow.id)
+        .then((createdFollow) => {
+          res.status(204).json({ deleted: true });
         });
       } else {
-        return Follow.create(follow).then(() => {
+        return Follow.create(follow)
+        .then(() => {
           //Notification.create()
           res.status(201).json({ ok: true });
         });
