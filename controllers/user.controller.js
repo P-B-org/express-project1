@@ -1,5 +1,6 @@
 const User = require("../models/User.model");
 const Follow = require("../models/Follow.model");
+const Notification = require("../models/Notification.model")
 const { requestDailyHoroscope } = require("../services/base.service");
 
 module.exports.explore = (req, res, next) => {
@@ -26,5 +27,14 @@ module.exports.peopleProfile = (req, res, next) => {
         res.render("user/otherProfile", { user })
     })
     .catch(next);
+}
+
+module.exports.notifications = (req, res, next) => {
+  Notification.find( {user: req.user.id} )
+  .then(notifications => {
+    console.log(notifications)
+    res.render("user/notifications", { notifications })
+  })
+  .catch(next);
 }
 

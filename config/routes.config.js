@@ -23,6 +23,7 @@ router.get("/logout", authMiddleware.isAuthenticated, authController.doLogout);
 router.get("/explore", authMiddleware.isAuthenticated, userController.explore);
 router.get("/profile", authMiddleware.isAuthenticated, userController.profile);
 router.get("/profile/:id", authMiddleware.isAuthenticated, userController.peopleProfile);
+router.get("/notifications", authMiddleware.isAuthenticated, userController.notifications);
 
 router.post("/profile/:id/follow", authMiddleware.isAuthenticated, followController.follow);
 

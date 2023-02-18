@@ -5,17 +5,21 @@
 <h4> {{currentUser.ascendantSign.ascendant}}</h4>
 <h4> {{dailyHoroscope.description}}</h4>
 
-
 <h3>{{currentUser.firstName}} follows:</h3>
 <ul>
-    {{#each currentUser.followeds as |follow|}} 
-          <li>{{follow.followed.firstName}}</li>  
-    {{/each}}
+  {{#each currentUser.followeds as |follow|}}
+    <li>{{follow.followed.firstName}}</li>
+  {{/each}}
 </ul>
 
 <h3>Who follows {{currentUser.firstName}}:</h3>
 <ul>
-    {{#each currentUser.followers as |follow|}} 
-          <li>{{follow.follower.firstName}}</li>  
-    {{/each}}
+  {{#each currentUser.followers as |follow|}}
+    <li>{{follow.follower.firstName}}</li>
+  {{/each}}
 </ul>
+
+<a class="btn btn-primary" href="/notifications">
+    <span>Notifications</span>
+    <i class="bi bi-bell"></i>
+</a>

@@ -1,11 +1,11 @@
 <h1>{{user.firstName}} Profile</h1>
 
-    <button class="follow-btn btn text-danger" type="button" value="{{user.id}}">
-        {{#isFollow userFollower=currentUser userFollowed=user}}
-        <span>Unfollow</span> 
-        <i class="bi bi-heart-fill"></i>
-        {{else}}
-        <span>Follow</span> 
-        <i class="bi bi-heart"></i>
-        {{/isFollow}}
-    </button>
+<button class="follow-btn btn text-danger" type="button" value="{{user.id}}">
+  {{#isFollow userFollower=currentUser userFollowed=user}}
+    <span>Unfollow</span>
+    <i class="bi bi-heart-fill"></i>
+  {{else}}
+    <span>Follow</span>
+    <i class="bi bi-heart"></i>
+  {{/isFollow}}
+</button>
