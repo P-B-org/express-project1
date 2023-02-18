@@ -1,16 +1,32 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+const Notification = require("../models/Notification.model");
 const User = require('../models/User.model');
 
 passport.serializeUser((user, next) => {
   next(null, user.id)
 })
 
+
 passport.deserializeUser((id, next) => {
   User.findById(id)
-  .populate("sunSign moonSign ascendantSign")
-    .then(user => { 
-      next(null, user)
+  .populate("sunSign moonSign ascendantSign notifications")
+  .populate({ 
+    path: "followeds",
+    populate: {
+      path: "followed"
+    } 
+  })
+  .populate({
+    path: "followers",
+    populate: {
+      path: "follower"
+    }
+  })
+  
+  .then(user => { 
+    //const newUser = { ...user, notifications: user.notifications} //read.filter(read === false)
+    next(null, user)
     })
     .catch(err => next(err))
 })

@@ -60,12 +60,36 @@ const userSchema = new mongoose.Schema(
       type: mongoose.Types.ObjectId,
       required: true,
       ref: "Sign",
-    }
+    },
   },
   {
     timestamps: true,
+    toObject: { 
+      virtuals: true,
+    }
   }
 );
+
+userSchema.virtual("followers", {
+ ref: "Follow",
+ foreignField: "followed",
+ localField: "_id",
+ justOne: false,
+});
+
+userSchema.virtual("followeds", {
+  ref: "Follow",
+  foreignField: "follower",
+  localField: "_id",
+  justOne: false,
+ })
+
+userSchema.virtual("notifications", {
+  ref: "Notification",
+  foreignField: "user",
+  localField: "_id",
+  justOne: false,
+});
 
 userSchema.pre("save", function (next) {
   const rawPassword = this.password;

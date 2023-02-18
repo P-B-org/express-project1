@@ -3,6 +3,8 @@ const router = require('express').Router();
 const miscController = require ("../controllers/misc.controller");
 const authController = require ("../controllers/auth.controller");
 const userController = require ("../controllers/user.controller");
+const followController = require ("../controllers/follow.controller");
+
 
 const authMiddleware = require ("../middlewares/auth.middleware");
 
@@ -21,6 +23,7 @@ router.get("/logout", authMiddleware.isAuthenticated, authController.doLogout);
 router.get("/explore", authMiddleware.isAuthenticated, userController.explore);
 router.get("/profile", authMiddleware.isAuthenticated, userController.profile);
 router.get("/profile/:id", authMiddleware.isAuthenticated, userController.peopleProfile);
-router.post("/profile/:id/follow", authMiddleware.isAuthenticated, userController.follow);
+
+router.post("/profile/:id/follow", authMiddleware.isAuthenticated, followController.follow);
 
 module.exports = router;
