@@ -4,6 +4,7 @@ const miscController = require ("../controllers/misc.controller");
 const authController = require ("../controllers/auth.controller");
 const userController = require ("../controllers/user.controller");
 const followController = require ("../controllers/follow.controller");
+const upload = require('../config/cloudinary.config');
 
 
 const authMiddleware = require ("../middlewares/auth.middleware");
@@ -13,7 +14,7 @@ router.get("/", authMiddleware.isNotAuthenticated, miscController.home);
 
 /*Auth */
 router.get("/signup", authMiddleware.isNotAuthenticated, authController.signup);
-router.post("/signup", authMiddleware.isNotAuthenticated, authController.doSignup);
+router.post("/signup", authMiddleware.isNotAuthenticated, upload.single('image'), authController.doSignup);
 
 router.get("/login", authMiddleware.isNotAuthenticated, authController.login);
 router.post("/login", authMiddleware.isNotAuthenticated, authController.doLogin);

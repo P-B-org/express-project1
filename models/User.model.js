@@ -61,6 +61,9 @@ const userSchema = new mongoose.Schema(
       required: true,
       ref: "Sign",
     },
+    image: {
+      type: String,
+    },
   },
   {
     timestamps: true,

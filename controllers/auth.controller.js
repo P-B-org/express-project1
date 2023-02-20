@@ -41,14 +41,19 @@ module.exports.doSignup = (req, res, next) => {
           return Promise.all(findSignPromises)
           .then(signs => {
            const [sunSign, moonSign, ascendantSign] = signs;
-           req.body = {
+           const userBody = {
             ...req.body,
             sunSign: sunSign.id,
             moonSign: moonSign.id,
             ascendantSign: ascendantSign.id
            }
-           
-           return User.create(req.body)
+           if (req.file) {
+            userBody.image = req.file.path
+           } else {
+            userBody.image = `/images/${sunSign.name}.png`
+           }
+           return User.create(userBody)
+
            .then((userCreated) => {
              console.log({ userCreated });
              res.redirect("/login");
