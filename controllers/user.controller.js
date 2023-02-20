@@ -1,5 +1,5 @@
 const User = require("../models/User.model");
-const Follow = require("../models/Follow.model");
+const Compatibility = require("../models/Compatibility.model");
 const Notification = require("../models/Notification.model")
 const { requestDailyHoroscope } = require("../services/base.service");
 
@@ -24,7 +24,10 @@ module.exports.profile = (req, res, next) => {
 module.exports.peopleProfile = (req, res, next) => {
     User.findById(req.params.id)
     .then(user => {
-        res.render("user/otherProfile", { user })
+        return Compatibility.findOne({signs: {$all: [user.sunSign, req.user.sunSign._id]} })
+        .then((compatibility) => {
+          res.render("user/otherProfile", { user, compatibility })
+        })
     })
     .catch(next);
 }
@@ -32,9 +35,11 @@ module.exports.peopleProfile = (req, res, next) => {
 module.exports.notifications = (req, res, next) => {
   Notification.find( {user: req.user.id} )
   .then(notifications => {
-    console.log(notifications)
     res.render("user/notifications", { notifications })
   })
   .catch(next);
 }
+
+
+// Compatibility.find({signs: {$all: [req.user.params, req.user.id]} })
 
