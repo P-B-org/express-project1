@@ -40,6 +40,6 @@ module.exports.notifications = (req, res, next) => {
   .catch(next);
 }
 
-
-// Compatibility.find({signs: {$all: [req.user.params, req.user.id]} })
-
+module.exports.editProfile = (req, res, next) => {
+  res.render("user/edit")
+}
