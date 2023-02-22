@@ -107,24 +107,4 @@ module.exports.doEditProfile = async (req, res, next) => {
         next(err);
       }
     });
-}
-
-  Notification.find( {user: req.user.id} )
-  .then(notifications => {
-    res.render("user/notifications", { notifications })
-  })
-  .catch(next);
 };
-
-
-  // User.findByIdAndUpdate(req.user.id, req.body, { new: true, runValidators: true })
-  //   .then((user) => {
-  //     res.redirect("/profile")
-  //   })
-  //   .catch((err) => {
-  //     if (err instanceof mongoose.Error.ValidationError) {
-  //       renderWithErrors(err.errors);
-  //     } else {
-  //       next(err);
-  //     }
-  //   });
