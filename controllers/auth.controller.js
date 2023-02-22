@@ -1,16 +1,15 @@
 const User = require("../models/User.model");
-const Sign = require("../models/Sign.model");
 const mongoose = require("mongoose");
 const passport = require('passport');
 const { GENERIC_ERROR_MESSAGE } = require('../config/passport.config');
-const { getSunSign, getMoonSign, getAscendantSign } = require("../public/js/utils");
+const { astralCalc, getSunSign, getMoonSign, getAscendantSign } = require("../controllers/helpers/signsHelper");
 
 
 module.exports.signup = (req, res, next) => {
   res.render("auth/signup");
 };
 
-module.exports.doSignup = (req, res, next) => {
+module.exports.doSignup = async (req, res, next) => {
   const renderWithErrors = (errors) => {
     const userData = { ...req.body };
     delete userData.password;
@@ -26,39 +25,27 @@ module.exports.doSignup = (req, res, next) => {
 
   if (password && repeatPassword && password === repeatPassword) {
     User.findOne({ email })
-      .then((user) => {
+      .then(async (user) => {
         if (user) {
           renderWithErrors({ email: "Email already in use" });
         } else {
-          const hour = Number(timeOfBirth.slice(0, 2));
+          const signs = await astralCalc(timeOfBirth, dayOfBirth, monthOfBirth, yearOfBirth)
 
-          const sunSign = getSunSign(Number(dayOfBirth), Number(monthOfBirth));
-          const moonSign = getMoonSign(Number(dayOfBirth), Number(monthOfBirth), Number(yearOfBirth));
-          const ascendantSign = getAscendantSign(sunSign, hour);
-
-          const findSignPromises = [sunSign, moonSign, ascendantSign].map(sign => Sign.findOne({ name: sign}))
-
-          return Promise.all(findSignPromises)
-          .then(signs => {
-           const [sunSign, moonSign, ascendantSign] = signs;
-           const userBody = {
+          const userBody = {
             ...req.body,
-            sunSign: sunSign.id,
-            moonSign: moonSign.id,
-            ascendantSign: ascendantSign.id
-           }
-           if (req.file) {
-            userBody.image = req.file.path
-           } else {
-            userBody.image = `/images/${sunSign.name}.png`
-           }
-           return User.create(userBody)
+            ...signs.ids
+          }
 
-           .then((userCreated) => {
-             console.log({ userCreated });
-             res.redirect("/login");
-           });
-          })
+          if (req.file) {
+            userBody.image = req.file.path
+          } else {
+            userBody.image = `/images/${signs.names.sunSign}.png`
+          }
+
+          return User.create(userBody)
+            .then((userCreated) => {
+              res.redirect("/login");
+            });
         }
       })
       .catch((err) => {
