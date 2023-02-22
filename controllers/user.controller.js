@@ -1,14 +1,24 @@
 const User = require("../models/User.model");
+const Post = require("../models/Post.model")
 const Compatibility = require("../models/Compatibility.model");
 const Notification = require("../models/Notification.model")
 const { requestDailyHoroscope } = require("../services/base.service");
 
 module.exports.explore = (req, res, next) => {
   User.find( {email: {$ne: req.user.email} })
-    .then((users) => {
-      res.render("user/explore", { users });
-    })
-    .catch(next);
+  .then((users) => {
+    res.render("user/explore", { users });
+  })
+  .catch(next);
+};
+
+module.exports.timeline = (req, res, next) => {
+  Post.find()
+  .populate("user")
+  .then(posts => {
+    res.render("user/timeline", { posts });
+  })
+  .catch(err => next(err))
 };
 
 module.exports.profile = (req, res, next) => {
@@ -30,7 +40,7 @@ module.exports.peopleProfile = (req, res, next) => {
         })
     })
     .catch(next);
-}
+};
 
 module.exports.notifications = (req, res, next) => {
   Notification.find( {user: req.user.id} )
@@ -38,8 +48,5 @@ module.exports.notifications = (req, res, next) => {
     res.render("user/notifications", { notifications })
   })
   .catch(next);
-}
-
-
-// Compatibility.find({signs: {$all: [req.user.params, req.user.id]} })
+};
 
