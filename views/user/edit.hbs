@@ -1,37 +1,57 @@
 <h1>EDIT</h1>
 
-<form action="" method="POST">
+<form action="/edit" method="POST">
     <div class="mb-3">
         <label for="firstName" class="form-label">First name</label>
-        <input value="{{currentUser.firstName}}" class="form-control" id="firstName"
-            name="firstName">
+        <input value="{{currentUser.firstName}}" class="form-control {{#if errors.firstName}}is-invalid{{/if}}"
+            id="firstName" name="firstName">
+        <div class="invalid-feedback">
+            {{errors.firstName}}
+        </div>
     </div>
     <div class="mb-3">
         <label for="lastName" class="form-label">Last name</label>
-        <input value="{{currentUser.lastName}}" class="form-control" id="lastName"
-            name="lastName">
+        <input value="{{currentUser.lastName}}" class="form-control {{#if errors.lastName}}is-invalid{{/if}}"
+            id="lastName" name="lastName">
+        <div class="invalid-feedback">
+            {{errors.lastName}}
+        </div>
     </div>
     <div class="mb-3">
         <label class="form-label">Date of birth</label>
         <div class="d-flex gap-3">
             <input type="number" value="{{currentUser.dayOfBirth}}"
-                class="form-control" name="dayOfBirth">
-            <input type="number" value="{{currentUser..monthOfBirth}}"
-                class="form-control" name="monthOfBirth">
-
+                class="form-control {{#if errors.dayOfBirth}}is-invalid{{/if}}" name="dayOfBirth">
+            <div class="invalid-feedback">
+                {{errors.dayOfBirth}}
+            </div>
+            <input type="number" value="{{currentUser.monthOfBirth}}"
+                class="form-control {{#if errors.monthOfBirth}}is-invalid{{/if}}" name="monthOfBirth">
+            <div class="invalid-feedback">
+                {{errors.monthOfBirth}}
+            </div>
             <input type="number" value="{{currentUser.yearOfBirth}}"
-                class="form-control" name="yearOfBirth">
+                class="form-control {{#if errors.yearOfBirth}}is-invalid{{/if}}" name="yearOfBirth">
+            <div class="invalid-feedback">
+                {{errors.yearOfBirth}}
+            </div>
         </div>
     </div>
     <div class="mb-3">
         <label for="timeOfBirth" class="form-label">Time of birth</label>
-        <input type="time" value="{{currentUser.timeOfBirth}}" class="form-control"
-            id="timeOfBirth" name="timeOfBirth">
+        <input type="time" value="{{currentUser.timeOfBirth}}"
+            class="form-control {{#if errors.timeOfBirth}}is-invalid{{/if}}" id="timeOfBirth" name="timeOfBirth">
+        <div class="invalid-feedback">
+            {{errors.timeOfBirth}}
+        </div>
     </div>
     <div class="mb-3">
         <label for="email" class="form-label">Email address</label>
-        <input value="{{currentUser.email}}" type="email" class="form-controL" id="email"
-            name="email" aria-describedby="emailHelp">
+        <input value="{{currentUser.email}}" type="email" class="form-control {{#if errors.email}}is-invalid{{/if}}"
+            id="email" name="email" aria-describedby="emailHelp">
+        <div class="invalid-feedback">
+            {{errors.email}}
+        </div>
     </div>
     <button type="submit" class="btn btn-primary">Update account</button>
 </form>

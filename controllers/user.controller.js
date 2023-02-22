@@ -1,10 +1,12 @@
 const User = require("../models/User.model");
 const Compatibility = require("../models/Compatibility.model");
 const Notification = require("../models/Notification.model")
+const mongoose = require('mongoose')
 const { requestDailyHoroscope } = require("../services/base.service");
+const { astralCalc } = require("./helpers/signsHelper");
 
 module.exports.explore = (req, res, next) => {
-  User.find( {email: {$ne: req.user.email} })
+  User.find({ email: { $ne: req.user.email } })
     .then((users) => {
       res.render("user/explore", { users });
     })
@@ -13,8 +15,8 @@ module.exports.explore = (req, res, next) => {
 
 module.exports.profile = (req, res, next) => {
   requestDailyHoroscope(req.user.sunSign.name.toLowerCase())
-  .then(function (response) {
-      res.render("user/profile", { dailyHoroscope: response.data});
+    .then(function (response) {
+      res.render("user/profile", { dailyHoroscope: response.data });
     })
     .catch(function (error) {
       console.error(error);
@@ -22,9 +24,9 @@ module.exports.profile = (req, res, next) => {
 };
 
 module.exports.peopleProfile = (req, res, next) => {
-    User.findById(req.params.id)
+  User.findById(req.params.id)
     .then(user => {
-        return Compatibility.findOne({signs: {$all: [user.sunSign, req.user.sunSign._id]} })
+      return Compatibility.findOne({ signs: { $all: [user.sunSign, req.user.sunSign._id] } })
         .then((compatibility) => {
           res.render("user/otherProfile", { user, compatibility })
         })
@@ -33,13 +35,71 @@ module.exports.peopleProfile = (req, res, next) => {
 }
 
 module.exports.notifications = (req, res, next) => {
-  Notification.find( {user: req.user.id} )
-  .then(notifications => {
-    res.render("user/notifications", { notifications })
-  })
-  .catch(next);
+  Notification.find({ user: req.user.id })
+    .then(notifications => {
+      res.render("user/notifications", { notifications })
+    })
+    .catch(next);
 }
 
 module.exports.editProfile = (req, res, next) => {
   res.render("user/edit")
 }
+
+module.exports.doEditProfile = async (req, res, next) => {
+  const renderWithErrors = (errors) => {
+    const userData = { ...req.body };
+    res.render("user/edit", {
+      user: userData,
+      errors,
+    });
+  };
+
+  const { email, timeOfBirth, dayOfBirth, monthOfBirth, yearOfBirth } = req.body;
+
+  const signs = await astralCalc(timeOfBirth, dayOfBirth, monthOfBirth, yearOfBirth)
+
+  User.findOne({ email: { $ne: req.user.email } })
+    .then(async (user) => {
+      if (user) {
+        renderWithErrors({ email: "Email already in use" });
+      } else {
+        const signs = await astralCalc(timeOfBirth, dayOfBirth, monthOfBirth, yearOfBirth)
+
+        const userBody = {
+          ...req.body,
+          ...signs.ids
+        }
+
+        if (req.file) {
+          userBody.image = req.file.path
+        } else {
+          userBody.image = `/images/${signs.names.sunSign}.png`
+        }
+
+        return User.findByIdAndUpdate(req.user.id, userBody, { new: true, runValidators: true })
+          .then((userUpdated) => {
+            res.redirect("/profile");
+          });
+      }
+    })
+    .catch((err) => {
+      if (err instanceof mongoose.Error.ValidationError) {
+        renderWithErrors(err.errors);
+      } else {
+        next(err);
+      }
+    });
+}
+
+  // User.findByIdAndUpdate(req.user.id, req.body, { new: true, runValidators: true })
+  //   .then((user) => {
+  //     res.redirect("/profile")
+  //   })
+  //   .catch((err) => {
+  //     if (err instanceof mongoose.Error.ValidationError) {
+  //       renderWithErrors(err.errors);
+  //     } else {
+  //       next(err);
+  //     }
+  //   });

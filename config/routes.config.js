@@ -24,6 +24,7 @@ router.get("/logout", authMiddleware.isAuthenticated, authController.doLogout);
 router.get("/explore", authMiddleware.isAuthenticated, userController.explore);
 router.get("/profile", authMiddleware.isAuthenticated, userController.profile);
 router.get("/edit", authMiddleware.isAuthenticated, userController.editProfile);
+router.post("/edit", authMiddleware.isAuthenticated, userController.doEditProfile);
 router.get("/profile/:id", authMiddleware.isAuthenticated, userController.peopleProfile);
 router.get("/notifications", authMiddleware.isAuthenticated, userController.notifications);
 
