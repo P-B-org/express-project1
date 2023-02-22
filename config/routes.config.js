@@ -1,11 +1,11 @@
 const router = require('express').Router();
+const upload = require('../config/cloudinary.config');
 
 const miscController = require ("../controllers/misc.controller");
 const authController = require ("../controllers/auth.controller");
 const userController = require ("../controllers/user.controller");
 const followController = require ("../controllers/follow.controller");
-const upload = require('../config/cloudinary.config');
-
+const postController = require ("../controllers/post.controller");
 
 const authMiddleware = require ("../middlewares/auth.middleware");
 
@@ -22,13 +22,16 @@ router.post("/login", authMiddleware.isNotAuthenticated, authController.doLogin)
 router.get("/logout", authMiddleware.isAuthenticated, authController.doLogout);
 
 router.get("/explore", authMiddleware.isAuthenticated, userController.explore);
+router.get("/timeline", authMiddleware.isAuthenticated, userController.timeline);
+router.get("/notifications", authMiddleware.isAuthenticated, userController.notifications);
 router.get("/profile", authMiddleware.isAuthenticated, userController.profile);
 router.get("/edit", authMiddleware.isAuthenticated, userController.editProfile);
 router.post("/edit", authMiddleware.isAuthenticated, userController.doEditProfile);
 router.get("/profile/:id", authMiddleware.isAuthenticated, userController.peopleProfile);
-router.get("/notifications", authMiddleware.isAuthenticated, userController.notifications);
 
 router.post("/profile/:id/follow", authMiddleware.isAuthenticated, followController.follow);
 
+router.get("/new-post", authMiddleware.isAuthenticated, postController.newPost);
+router.post("/new-post", authMiddleware.isAuthenticated, upload.single('image'), postController.doNewPost);
 
 module.exports = router;
