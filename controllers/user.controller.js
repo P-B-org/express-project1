@@ -50,9 +50,10 @@ module.exports.profile = (req, res, next) => {
 
 module.exports.peopleProfile = (req, res, next) => {
   User.findById(req.params.id)
+    .populate("sunSign moonSign ascendantSign")
     .then((user) => {
       return Compatibility.findOne({
-        signs: { $all: [user.sunSign, req.user.sunSign._id] },
+        signs: { $all: [user.sunSign.id, req.user.sunSign._id] },
       }).then((compatibility) => {
         res.render("user/otherProfile", { user, compatibility });
       });
@@ -63,7 +64,30 @@ module.exports.peopleProfile = (req, res, next) => {
 module.exports.notifications = (req, res, next) => {
   Notification.find({ user: req.user.id })
     .then((notifications) => {
-      res.render("user/notifications", { notifications });
+      const unReadedNotifications = notifications.filter((n) => !n.read);
+
+      Notification.updateMany({ user: req.user.id }, { read: true }).then(
+        (updatedNts) => {
+          const setNotifications = notifications.filter(
+            (value, index, self) =>
+              index === self.findIndex((t) => t.message === value.message)
+          );
+
+          const notificationsByRead = setNotifications.map((n) => {
+            const isUnread = unReadedNotifications.find(
+              (unReadNt) => unReadNt.id === n.id
+            );
+            if (!isUnread) {
+              return { ...n._doc, read: false };
+            } else {
+              return { ...n._doc, read: true };
+            }
+          });
+          res.render("user/notifications", {
+            notifications: notificationsByRead,
+          });
+        }
+      );
     })
     .catch(next);
 };

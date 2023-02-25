@@ -1,8 +1,8 @@
-<div class="d-flex min-vh-100 gap-2">
+<div class="d-flex gap-2">
 
   {{> sidebar}}
 
-  <section>
+  <section style="position:relative">
     <h1>Timeline</h1>
 
     {{#each posts as |post|}}
@@ -12,10 +12,7 @@
     </div>
     <p>{{post.body}}</p>
     {{#if post.image}}
-   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  <img class="post-img" style="width:200px" src="{{post.image}}" alt="Post image" data-bs-toggle="modal" data-bs-target="#exampleModal">
-
-</button>
+    <img class="post-img data-bs-toggle="modal" data-bs-target="#exampleModal"" style="width:200px" src="{{post.image}}" alt="Post image" data-bs-toggle="modal" data-bs-target="#exampleModal">
     {{/if}}
     {{/each}}
 
