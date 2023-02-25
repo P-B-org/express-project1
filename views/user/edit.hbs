@@ -1,57 +1,67 @@
-<h1>EDIT</h1>
+<div class="d-flex min-vh-100 gap-2">
 
-<form action="/edit" method="POST">
-    <div class="mb-3">
-        <label for="firstName" class="form-label">First name</label>
-        <input value="{{currentUser.firstName}}" class="form-control {{#if errors.firstName}}is-invalid{{/if}}"
-            id="firstName" name="firstName">
-        <div class="invalid-feedback">
-            {{errors.firstName}}
-        </div>
-    </div>
-    <div class="mb-3">
-        <label for="lastName" class="form-label">Last name</label>
-        <input value="{{currentUser.lastName}}" class="form-control {{#if errors.lastName}}is-invalid{{/if}}"
-            id="lastName" name="lastName">
-        <div class="invalid-feedback">
-            {{errors.lastName}}
-        </div>
-    </div>
-    <div class="mb-3">
-        <label class="form-label">Date of birth</label>
-        <div class="d-flex gap-3">
-            <input type="number" value="{{currentUser.dayOfBirth}}"
-                class="form-control {{#if errors.dayOfBirth}}is-invalid{{/if}}" name="dayOfBirth">
-            <div class="invalid-feedback">
-                {{errors.dayOfBirth}}
+    {{> sidebar}}
+
+    <form action="/edit" method="POST">
+        <div id="form-edit">
+            <div class="form-edit-container">
+                <h1>Edit your profile!</h1>
+                <div class="mb-3">
+                    <label for="firstName" class="form-label">First name</label>
+                    <input value="{{currentUser.firstName}}"
+                        class="form-control {{#if errors.firstName}}is-invalid{{/if}}" id="firstName" name="firstName">
+                    <div class="invalid-feedback">
+                        {{errors.firstName}}
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="lastName" class="form-label">Last name</label>
+                    <input value="{{currentUser.lastName}}"
+                        class="form-control {{#if errors.lastName}}is-invalid{{/if}}" id="lastName" name="lastName">
+                    <div class="invalid-feedback">
+                        {{errors.lastName}}
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Date of birth</label>
+                    <div class="d-flex gap-3">
+                        <input type="number" value="{{currentUser.dayOfBirth}}"
+                            class="form-control {{#if errors.dayOfBirth}}is-invalid{{/if}}" name="dayOfBirth">
+                        <div class="invalid-feedback">
+                            {{errors.dayOfBirth}}
+                        </div>
+                        <input type="number" value="{{currentUser.monthOfBirth}}"
+                            class="form-control {{#if errors.monthOfBirth}}is-invalid{{/if}}" name="monthOfBirth">
+                        <div class="invalid-feedback">
+                            {{errors.monthOfBirth}}
+                        </div>
+                        <input type="number" value="{{currentUser.yearOfBirth}}"
+                            class="form-control {{#if errors.yearOfBirth}}is-invalid{{/if}}" name="yearOfBirth">
+                        <div class="invalid-feedback">
+                            {{errors.yearOfBirth}}
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="timeOfBirth" class="form-label">Time of birth</label>
+                    <input type="time" value="{{currentUser.timeOfBirth}}"
+                        class="form-control {{#if errors.timeOfBirth}}is-invalid{{/if}}" id="timeOfBirth"
+                        name="timeOfBirth">
+                    <div class="invalid-feedback">
+                        {{errors.timeOfBirth}}
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email address</label>
+                    <input value="{{currentUser.email}}" type="email"
+                        class="form-control {{#if errors.email}}is-invalid{{/if}}" id="email" name="email"
+                        aria-describedby="emailHelp">
+                    <div class="invalid-feedback">
+                        {{errors.email}}
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-outline-info">Update account</button>
             </div>
-            <input type="number" value="{{currentUser.monthOfBirth}}"
-                class="form-control {{#if errors.monthOfBirth}}is-invalid{{/if}}" name="monthOfBirth">
-            <div class="invalid-feedback">
-                {{errors.monthOfBirth}}
-            </div>
-            <input type="number" value="{{currentUser.yearOfBirth}}"
-                class="form-control {{#if errors.yearOfBirth}}is-invalid{{/if}}" name="yearOfBirth">
-            <div class="invalid-feedback">
-                {{errors.yearOfBirth}}
-            </div>
         </div>
-    </div>
-    <div class="mb-3">
-        <label for="timeOfBirth" class="form-label">Time of birth</label>
-        <input type="time" value="{{currentUser.timeOfBirth}}"
-            class="form-control {{#if errors.timeOfBirth}}is-invalid{{/if}}" id="timeOfBirth" name="timeOfBirth">
-        <div class="invalid-feedback">
-            {{errors.timeOfBirth}}
-        </div>
-    </div>
-    <div class="mb-3">
-        <label for="email" class="form-label">Email address</label>
-        <input value="{{currentUser.email}}" type="email" class="form-control {{#if errors.email}}is-invalid{{/if}}"
-            id="email" name="email" aria-describedby="emailHelp">
-        <div class="invalid-feedback">
-            {{errors.email}}
-        </div>
-    </div>
-    <button type="submit" class="btn btn-primary">Update account</button>
-</form>
+    </form>
+</div>

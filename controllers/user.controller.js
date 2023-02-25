@@ -16,9 +16,9 @@ module.exports.explore = (req, res, next) => {
   User.find(
     search
       ? {
-          $or: [{ firstName: criteria }, { lastName: criteria }],
-          email: { $ne: req.user.email },
-        }
+        $or: [{ firstName: criteria }, { lastName: criteria }],
+        email: { $ne: req.user.email },
+      }
       : { email: { $ne: req.user.email } }
   )
     .sort({ firstName: 1, lastName: 1 })
@@ -71,6 +71,18 @@ module.exports.notifications = (req, res, next) => {
 module.exports.settings = (req, res, next) => {
   res.render("user/settings");
 };
+
+module.exports.editPassword = (req, res, next) => {
+  res.render("user/editPassword");
+}
+
+module.exports.doEditPassword = (req, res, next) => {
+  const renderWithErrors = (errors) => {
+    const userData = { ...req.body }; {
+      res.render("user/editPassword")
+    }
+  }
+}
 
 module.exports.editProfile = (req, res, next) => {
   res.render("user/edit");

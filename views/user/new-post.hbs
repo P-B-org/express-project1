@@ -1,15 +1,20 @@
-<h1>Create a new post!</h1>
+<div class="d-flex gap-2">
+  {{> sidebar}}
 
-<form action="" method="POST" enctype="multipart/form-data">
-  <div class="mb-3">
-    <label for="body" class="form-label">Post</label>
-    <textarea class="form-control {{#if errors.body}}is-invalid{{/if}}" id="body" rows="3" name="body"></textarea>
-    <div class="invalid-feedback">
-      {{errors.body}}
-    </div>
-    <label for="image" class="form-label">Image</label>
-    <input type="file" id="image" name="image" accept="image/png, image/jpeg"/>
-   </div>
-
-<button type="submit" class="btn btn-primary">Submit</button>
-</form>
+  <div class="container-post">
+    <h1>Create a new post!</h1>
+    <form action="" method="POST" enctype="multipart/form-data">
+      <div class="mb-3">
+        <label for="body" class="form-label">Your Post in Here</label>
+        <textarea class="form-control {{#if errors.body}}is-invalid{{/if}}" id="body" rows="3" name="body"></textarea>
+        <div class="invalid-feedback">
+          {{errors.body}}
+        </div>
+        <label for="image" class="form-label">Upload an Image</label>
+        </br>
+        <input type="file" id="image" name="image" accept="image/png, image/jpeg" />
+      </div>
+      <button type="submit" class="btn btn-outline-info">Submit</button>
+    </form>
+  </div>
+</div>
