@@ -25,27 +25,16 @@
   </ul>
   <hr />
   <div class="dropdown">
-    <a
-      href="#"
-      class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
-      id="dropdownUser2"
-      data-bs-toggle="dropdown"
-      aria-expanded="false"
-    >
-      <img
-        src="{{currentUser.image}}"
-        alt=""
-        width="32"
-        height="32"
-        class="rounded-circle me-2"
-      />
+    <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2"
+      data-bs-toggle="dropdown" aria-expanded="false">
+      <img src="{{currentUser.image}}" alt="" width="32" height="32" class="rounded-circle me-2" />
       <strong>{{currentUser.firstName}}</strong>
     </a>
     <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
       <li><a class="dropdown-item" href="/settings">Settings</a></li>
       <li><a class="dropdown-item" href="/profile">Profile</a></li>
       <li><hr class="dropdown-divider" /></li>
-      <li><a class="dropdown-item" href="/logout">Log out</a></li>
+      <li><a class="dropdown-item" href="/logout">Log out</a></li>      
     </ul>
   </div>
 </div>
