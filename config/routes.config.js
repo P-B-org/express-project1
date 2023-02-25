@@ -1,15 +1,15 @@
 const router = require('express').Router();
 const upload = require('../config/cloudinary.config');
 
-const miscController = require ("../controllers/misc.controller");
-const authController = require ("../controllers/auth.controller");
-const userController = require ("../controllers/user.controller");
-const followController = require ("../controllers/follow.controller");
-const postController = require ("../controllers/post.controller");
+const miscController = require("../controllers/misc.controller");
+const authController = require("../controllers/auth.controller");
+const userController = require("../controllers/user.controller");
+const followController = require("../controllers/follow.controller");
+const postController = require("../controllers/post.controller");
 
-const authMiddleware = require ("../middlewares/auth.middleware");
+const authMiddleware = require("../middlewares/auth.middleware");
 
-/* Main route*/ 
+/* Main route*/
 router.get("/", authMiddleware.isNotAuthenticated, miscController.home);
 
 /*Auth */
@@ -28,6 +28,8 @@ router.get("/settings", authMiddleware.isAuthenticated, userController.settings)
 router.get("/profile", authMiddleware.isAuthenticated, userController.profile);
 router.get("/edit", authMiddleware.isAuthenticated, userController.editProfile);
 router.post("/edit", authMiddleware.isAuthenticated, userController.doEditProfile);
+router.get("/editPassword", authMiddleware.isAuthenticated, userController.editPassword);
+router.post("/editPassword", authMiddleware.isAuthenticated, userController.doEditPassword);
 router.get("/profile/:id", authMiddleware.isAuthenticated, userController.peopleProfile);
 
 router.post("/profile/:id/follow", authMiddleware.isAuthenticated, followController.follow);
