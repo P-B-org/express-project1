@@ -14,13 +14,44 @@ body {
     justify-content: flex-start;
 }
 
-.titleContainer {
+#titleContainer {
     display: flex;
-    margin-top: 200;
-    font-weight: bolder;
-    line-height: inherit;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
+    margin-top: 50;
+    margin-bottom: auto;
+    font-size: 30px;
+    font-weight: bolder;
     font-family: 'Florethila', sans-serif;
-    font-size: calc(4rem + 1.5vw);
+}
 
+.hidden {
+    display: none !important;
+}
+
+#allContainer a {
+    color: white;
+    font-weight: bolder;
+    text-decoration: none;
+    font-size: 30px;
+    border-color: white;
+    border-width: 30%;
+    border-radius: 20%;
+
+
+}
+
+#allForm {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.containerForm {
+    width: 350px;
+}
+
+.title {
+    font-size: 55px;
 }

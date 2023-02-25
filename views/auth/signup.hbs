@@ -1,64 +1,76 @@
-<h1>Sign up to AppSign</h1>
-
 <form action="/signup" method="POST">
-  <div class="mb-3">
-    <label for="firstName" class="form-label">First name</label>
-    <input value="{{user.firstName}}" class="form-control {{#if errors.firstName}}is-invalid{{/if}}" id="firstName" name="firstName">
-    <div class="invalid-feedback">
-      {{errors.firstName}}
-    </div>
-  </div>
-  <div class="mb-3">
-    <label for="lastName" class="form-label">Last name</label>
-    <input value="{{user.lastName}}" class="form-control {{#if errors.lastName}}is-invalid{{/if}}" id="lastName" name="lastName">
-    <div class="invalid-feedback">
-      {{errors.lastName}}
-    </div>
-  </div>
-  <div class="mb-3">
-    <label class="form-label">Date of birth</label>
-    <div class="d-flex gap-3">
-      <input placeholder="Day" type="number" value="{{user.dayOfBirth}}" min="1" max="31" class="form-control {{#if errors.dayOfBirth}}is-invalid{{/if}}" name="dayOfBirth">
-      <div class="invalid-feedback">
-        {{errors.dayOfBirth}}
+  <div id="allForm">
+    <div class="containerForm">
+      <h1>Sign up to AppSign</h1>
+      <div class="mb-3">
+        <label for="firstName" class="form-label">First name</label>
+        <input value="{{user.firstName}}" class="form-control {{#if errors.firstName}}is-invalid{{/if}}" id="firstName"
+          name="firstName">
+        <div class="invalid-feedback">
+          {{errors.firstName}}
+        </div>
       </div>
-      <input placeholder="Month" type="number" value="{{user.monthOfBirth}}" min="1" max="12" class="form-control {{#if errors.monthOfBirth}}is-invalid{{/if}}" name="monthOfBirth">
-      <div class="invalid-feedback">
-        {{errors.monthOfBirth}}
+      <div class="mb-3">
+        <label for="lastName" class="form-label">Last name</label>
+        <input value="{{user.lastName}}" class="form-control {{#if errors.lastName}}is-invalid{{/if}}" id="lastName"
+          name="lastName">
+        <div class="invalid-feedback">
+          {{errors.lastName}}
+        </div>
       </div>
-      <input placeholder="Year" type="number" value="{{user.yearOfBirth}}" min="1980" max="2023"  class="form-control {{#if errors.yearOfBirth}}is-invalid{{/if}}" name="yearOfBirth">
-      <div class="invalid-feedback">
-        {{errors.yearOfBirth}}
+      <div class="mb-3">
+        <label class="form-label">Date of birth</label>
+        <div class="d-flex gap-3">
+          <input placeholder="Day" type="number" value="{{user.dayOfBirth}}" min="1" max="31"
+            class="form-control {{#if errors.dayOfBirth}}is-invalid{{/if}}" name="dayOfBirth">
+          <div class="invalid-feedback">
+            {{errors.dayOfBirth}}
+          </div>
+          <input placeholder="Month" type="number" value="{{user.monthOfBirth}}" min="1" max="12"
+            class="form-control {{#if errors.monthOfBirth}}is-invalid{{/if}}" name="monthOfBirth">
+          <div class="invalid-feedback">
+            {{errors.monthOfBirth}}
+          </div>
+          <input placeholder="Year" type="number" value="{{user.yearOfBirth}}" min="1980" max="2023"
+            class="form-control {{#if errors.yearOfBirth}}is-invalid{{/if}}" name="yearOfBirth">
+          <div class="invalid-feedback">
+            {{errors.yearOfBirth}}
+          </div>
+        </div>
       </div>
+      <div class="mb-3">
+        <label for="timeOfBirth" class="form-label">Time of birth</label>
+        <input type="time" value="{{user.timeOfBirth}}" class="form-control {{#if errors.timeOfBirth}}is-invalid{{/if}}"
+          id="timeOfBirth" name="timeOfBirth">
+        <div class="invalid-feedback">
+          {{errors.timeOfBirth}}
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email address</label>
+        <input value="{{user.email}}" type="email" class="form-control {{#if errors.email}}is-invalid{{/if}}" id="email"
+          name="email" aria-describedby="emailHelp">
+        <div class="invalid-feedback">
+          {{errors.email}}
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control {{#if errors.password}}is-invalid{{/if}}" id="password"
+          name="password">
+        <div class="invalid-feedback">
+          {{errors.password}}
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="repeat-password" class="form-label">Repeat password</label>
+        <input type="password" class="form-control {{#if errors.password}}is-invalid{{/if}}" id="repeat-password"
+          name="repeatPassword">
+        <div class="invalid-feedback">
+          {{errors.password}}
+        </div>
+      </div>
+      <button type="submit" class="btn btn-outline-light">Create account</button>
     </div>
   </div>
-  <div class="mb-3">
-    <label for="timeOfBirth" class="form-label">Time of birth</label>
-    <input type="time" value="{{user.timeOfBirth}}" class="form-control {{#if errors.timeOfBirth}}is-invalid{{/if}}" id="timeOfBirth" name="timeOfBirth">
-    <div class="invalid-feedback">
-      {{errors.timeOfBirth}}
-    </div>
-  </div>
-  <div class="mb-3">
-    <label for="email" class="form-label">Email address</label>
-    <input value="{{user.email}}" type="email" class="form-control {{#if errors.email}}is-invalid{{/if}}" id="email" name="email" aria-describedby="emailHelp">
-    <div class="invalid-feedback">
-      {{errors.email}}
-    </div>
-  </div>
-  <div class="mb-3">
-    <label for="password" class="form-label">Password</label>
-    <input type="password" class="form-control {{#if errors.password}}is-invalid{{/if}}" id="password" name="password">
-    <div class="invalid-feedback">
-      {{errors.password}}
-    </div>
-  </div>
-  <div class="mb-3">
-    <label for="repeat-password" class="form-label">Repeat password</label>
-    <input type="password" class="form-control {{#if errors.password}}is-invalid{{/if}}" id="repeat-password" name="repeatPassword">
-    <div class="invalid-feedback">
-      {{errors.password}}
-    </div>
-  </div>
-  <button type="submit" class="btn btn-primary">Create account</button>
 </form>

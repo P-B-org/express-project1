@@ -1,15 +1,15 @@
 const router = require('express').Router();
 const upload = require('../config/cloudinary.config');
 
-const miscController = require ("../controllers/misc.controller");
-const authController = require ("../controllers/auth.controller");
-const userController = require ("../controllers/user.controller");
-const followController = require ("../controllers/follow.controller");
-const postController = require ("../controllers/post.controller");
+const miscController = require("../controllers/misc.controller");
+const authController = require("../controllers/auth.controller");
+const userController = require("../controllers/user.controller");
+const followController = require("../controllers/follow.controller");
+const postController = require("../controllers/post.controller");
 
-const authMiddleware = require ("../middlewares/auth.middleware");
+const authMiddleware = require("../middlewares/auth.middleware");
 
-/* Main route*/ 
+/* Main route*/
 router.get("/", authMiddleware.isNotAuthenticated, miscController.home);
 
 /*Auth */
