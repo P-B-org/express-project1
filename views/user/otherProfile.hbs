@@ -5,25 +5,28 @@
   <div style="width: 100vw" class="other-profile-page">
 
     <section class="header-other-profile">
-      <img class="user-img" src="{{user.image}}" alt="User sun sign profile picture">
-      <div>
-        <h4>{{user.firstName}}</h4>
-        <span class="d-flex astral-description">
-          <div class="d-flex">
-            <i class="bi bi-sun"></i>
-            <p>{{user.sunSign.name}}</p>
-          </div>
-          <div class="d-flex">
-            <i class="bi bi-moon"></i>
-            <p>{{user.moonSign.name}}</p>
-          </div>
-          <div class="d-flex">
-            <i class="bi bi-arrow-up"></i>
-            <p>{{user.ascendantSign.name}}</p>
-          </div>
-        </span>
+      <div class="d-flex align-items-center">
+        <img class="user-img" src="{{user.image}}" alt="User sun sign profile picture">
+        <div>
+          <h4>{{user.firstName}}</h4>
+          <span class="d-flex astral-description">
+            <div class="d-flex">
+              <i class="bi bi-sun"></i>
+              <p>{{user.sunSign.name}}</p>
+            </div>
+            <div class="d-flex">
+              <i class="bi bi-moon"></i>
+              <p>{{user.moonSign.name}}</p>
+            </div>
+            <div class="d-flex">
+              <i class="bi bi-arrow-up"></i>
+              <p>{{user.ascendantSign.name}}</p>
+            </div>
+          </span>
+        </div>
       </div>
 
+      <div>
       <button class="follow-btn btn text-danger" type="button" value="{{user.id}}">
         {{#isFollow userFollower=currentUser userFollowed=user}}
           <span>Unfollow</span>
@@ -33,6 +36,8 @@
           <i class="bi bi-heart"></i>
         {{/isFollow}}
       </button>
+      </div>
+
     </section>
 
     <section>

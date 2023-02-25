@@ -7,6 +7,7 @@ body {
 .other-profile-page .header-other-profile {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     padding: 30px;
     margin-bottom: 30px;
     background-color: #2D5C6D;
@@ -25,7 +26,8 @@ body {
     padding-right: 5px;
 }
 
-.astral-description div p {
+.astral-description div p, 
+.user-profile h4 {
     padding-right: 15px;
 }
 
@@ -143,4 +145,30 @@ body {
     padding: 40px;
     margin-left: 300px;
     background-image: linear-gradient(to right, white, #8FEBE0, white);
+}
+}
+
+.timeline-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+}
+
+.post-structure {
+    padding: 20px;
+    margin-bottom: 30px;
+    width: 50vw;
+    border-bottom: #050505 1px solid;
+}
+
+.post-structure .user-profile {
+    display: flex;
+    align-items: center;
+}
+
+.post-structure .post-content {
+    display: flex;
+    flex-direction: column;
 }
