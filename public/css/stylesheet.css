@@ -1,12 +1,10 @@
-
 body {
     position: relative;
     font-family: 'Zen Kaku Gothic Antique', sans-serif;
 }
 
 .profile-page .header,
-.other-profile-page .header-other-profile
-{
+.other-profile-page .header-other-profile {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -42,8 +40,7 @@ body {
 
 .profile-page .astral-card div,
 .explore-page,
-.notifications-page
-{
+.notifications-page {
     display: flex;
     flex-direction: column;
 }
@@ -109,10 +106,6 @@ body {
     justify-content: center;
 }
 
-.containerForm,
-.form-edit-container {
-    width: 350px;
-}
 
 .title {
     font-size: 55px;
@@ -120,16 +113,30 @@ body {
 
 #form-edit {
     padding: 40px;
-    margin-left: 300px
+    margin-left: 300px;
+    background-image: linear-gradient(to right, white, #8FEBE0, white);
+    width: 500px;
+    height: 735px;
+    margin-top: 0px;
+
+}
+
+.container-settings {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left: 300px;
+    background-image: linear-gradient(to right, white, #8FEBE0, white);
 }
 
 .edits-btn {
     display: flex;
-    flex-direction: column;
-    margin-top: 15px;
-    font-size: 20px;
-    margin-left: 300px;
+    flex-direction: row;
     padding: 40px;
+    margin-left: 50px;
+    margin-right: 50px;
+    justify-content: center;
 }
 
 .container-post {
@@ -137,6 +144,8 @@ body {
     flex-direction: column;
     padding: 40px;
     margin-left: 300px;
+    background-image: linear-gradient(to right, white, #8FEBE0, white);
+}
 }
 
 .timeline-page {
