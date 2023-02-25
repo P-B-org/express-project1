@@ -2,12 +2,6 @@
 body {
     position: relative;
     font-family: 'Zen Kaku Gothic Antique', sans-serif;
-
-@import url('https://fonts.cdnfonts.com/css/comfort-zone');
-@import url('https://fonts.cdnfonts.com/css/florethila');
-
-.profile-page {
-    margin: 0 30px;
 }
 
 .profile-page .header,
@@ -64,11 +58,11 @@ body {
     transform: translate(-50%, 30%);
 }
 
-
 .notification {
     border-bottom: 1px solid #050505;
     padding: 20px;
     width: 50vw;
+}
 
 .background-container {
     margin: 0;
