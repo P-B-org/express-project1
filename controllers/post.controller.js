@@ -11,7 +11,7 @@ module.exports.doNewPost = (req, res, next) => {
   };
 
   if (req.file) {
-    newPost.image = req.file.path
+    newPost.image = req.file.path;
   }
 
   Post.create(newPost)
@@ -21,7 +21,7 @@ module.exports.doNewPost = (req, res, next) => {
     .catch((err) => {
       if (mongoose.Error.ValidationError) {
         res.render("user/new-post", {
-          tweet: req.body.body,
+          post: req.body.body,
           errors: err.errors,
         });
       }

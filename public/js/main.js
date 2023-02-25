@@ -38,4 +38,9 @@ window.onload = () => {
       modalNode.appendChild(imageNode);
     };
   });
+
+  modalNode.onclick = () => {
+    imageNode.classList.remove("bigPostImages");
+    imageNode.src = "";
+  };
 };

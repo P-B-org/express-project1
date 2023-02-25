@@ -5,24 +5,33 @@
   <div class="profile-page">
 
   <section class="header">
-    <img class="user-img" src="{{currentUser.image}}" alt="User sun sign profile picture">
-    <div>
-      <h4>{{currentUser.firstName}}</h4>
-      <span class="d-flex astral-description">
-        <div class="d-flex">
-          <i class="bi bi-sun"></i>
-          <p>{{currentUser.sunSign.name}}</p>
-        </div>
-        <div class="d-flex">
-          <i class="bi bi-moon"></i>
-          <p>{{currentUser.moonSign.name}}</p>
-        </div>
-        <div class="d-flex">
-          <i class="bi bi-arrow-up"></i>
-          <p>{{currentUser.ascendantSign.name}}</p>
-        </div>
-      </span>
+    <div class="d-flex align-items-center">
+      <img class="user-img" src="{{currentUser.image}}" alt="User sun sign profile picture">
+      <div>
+        <h4>{{currentUser.firstName}}</h4>
+        <span class="d-flex astral-description">
+          <div class="d-flex">
+            <i class="bi bi-sun"></i>
+            <p>{{currentUser.sunSign.name}}</p>
+          </div>
+          <div class="d-flex">
+            <i class="bi bi-moon"></i>
+            <p>{{currentUser.moonSign.name}}</p>
+          </div>
+          <div class="d-flex">
+            <i class="bi bi-arrow-up"></i>
+            <p>{{currentUser.ascendantSign.name}}</p>
+          </div>
+        </span>
+      </div>
     </div>
+
+    <div>
+      <a class="btn" style="background-color: #8FEBE0" href="/notifications">
+      <span>Notifications</span>
+      <i class="bi bi-bell"></i>
+      </a>
+      </div>
   </section>
 
   <section>
@@ -61,10 +70,7 @@
     {{/each}}
   </ul> --}}
 
-  <a class="btn btn-primary" href="/notifications">
-      <span>Notifications</span>
-      <i class="bi bi-bell"></i>
-  </a>
+  
 
   </div>
 </div>

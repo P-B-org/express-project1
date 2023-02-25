@@ -16,9 +16,9 @@ module.exports.explore = (req, res, next) => {
   User.find(
     search
       ? {
-        $or: [{ firstName: criteria }, { lastName: criteria }],
-        email: { $ne: req.user.email },
-      }
+          $or: [{ firstName: criteria }, { lastName: criteria }],
+          email: { $ne: req.user.email },
+        }
       : { email: { $ne: req.user.email } }
   )
     .sort({ firstName: 1, lastName: 1 })
@@ -31,7 +31,12 @@ module.exports.explore = (req, res, next) => {
 
 module.exports.timeline = (req, res, next) => {
   Post.find()
-    .populate("user")
+    .populate({
+      path: "user",
+      populate: {
+        path: "sunSign moonSign ascendantSign",
+      },
+    })
     .then((posts) => {
       res.render("user/timeline", { posts });
     })
@@ -98,15 +103,16 @@ module.exports.settings = (req, res, next) => {
 
 module.exports.editPassword = (req, res, next) => {
   res.render("user/editPassword");
-}
+};
 
 module.exports.doEditPassword = (req, res, next) => {
   const renderWithErrors = (errors) => {
-    const userData = { ...req.body }; {
-      res.render("user/editPassword")
+    const userData = { ...req.body };
+    {
+      res.render("user/editPassword");
     }
-  }
-}
+  };
+};
 
 module.exports.editProfile = (req, res, next) => {
   res.render("user/edit");
