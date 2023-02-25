@@ -2,10 +2,10 @@
 
     {{> sidebar}}
 
-    <form action="/edit" method="POST">
-        <div id="form-edit">
-            <div class="form-edit-container">
-                <h1>Edit your profile!</h1>
+    <div id="form-edit">
+        <div class="form-edit-container">
+            <h1>Edit your profile!</h1>
+            <form action="/edit" method="POST">
                 <div class="mb-3">
                     <label for="firstName" class="form-label">First name</label>
                     <input value="{{currentUser.firstName}}"
@@ -60,8 +60,8 @@
                         {{errors.email}}
                     </div>
                 </div>
-                <button type="submit" class="btn btn-outline-info">Update account</button>
-            </div>
+                <button type="submit" class="btn btn-outline-secondary">Update account</button>
         </div>
+    </div>
     </form>
 </div>
