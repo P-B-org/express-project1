@@ -2,7 +2,7 @@ const User = require("../models/User.model");
 const mongoose = require("mongoose");
 const passport = require('passport');
 const { GENERIC_ERROR_MESSAGE } = require('../config/passport.config');
-const { astralCalc, getSunSign, getMoonSign, getAscendantSign } = require("../controllers/helpers/signsHelper");
+const { astralCalc } = require("../controllers/helpers/signsHelper");
 
 
 module.exports.signup = (req, res, next) => {
@@ -39,7 +39,7 @@ module.exports.doSignup = async (req, res, next) => {
           if (req.file) {
             userBody.image = req.file.path
           } else {
-            userBody.image = `/images/${signs.names.sunSign}.png`
+            userBody.image = `/images/signs/${signs.names.sunSign}.png`
           }
 
           return User.create(userBody)

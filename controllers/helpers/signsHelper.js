@@ -239,7 +239,6 @@ const getAscendantSign = (sunSign, hour) => {
 
 const astralCalc = async (timeOfBirth, dayOfBirth, monthOfBirth, yearOfBirth) => {
     const hour = Number(timeOfBirth.slice(0, 2));
-    //Calcular signo SOLAR
 
     const sunSign = getSunSign(Number(dayOfBirth), Number(monthOfBirth));
     const moonSign = getMoonSign(Number(dayOfBirth), Number(monthOfBirth), Number(yearOfBirth));
@@ -258,8 +257,9 @@ const astralCalc = async (timeOfBirth, dayOfBirth, monthOfBirth, yearOfBirth) =>
                 },
                 names: {
                     sunSign: sunSign.name,
-                }
-
+                    moonSign: moonSign.name,
+                    ascendantSign: ascendantSign.name
+                },
             }
         })
         .catch((err) => err)

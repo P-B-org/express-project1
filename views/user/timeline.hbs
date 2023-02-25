@@ -1,12 +1,35 @@
-<h1>Timeline</h1>
+<div class="d-flex min-vh-100 gap-2">
 
-{{#each posts as |post|}}
-<div>
-  <img src="{{post.user.image}}" alt="User profile picture">
-  <h4>{{post.user.firstName}}</h4>
+  {{> sidebar}}
+
+  <section>
+    <h1>Timeline</h1>
+
+    {{#each posts as |post|}}
+    <div class="user-profile">
+      <img style="width:50px" src="{{post.user.image}}" alt="User profile picture">
+      <h4>{{post.user.firstName}}</h4>
+    </div>
+    <p>{{post.body}}</p>
+    {{#if post.image}}
+   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  <img class="post-img" style="width:200px" src="{{post.image}}" alt="Post image" data-bs-toggle="modal" data-bs-target="#exampleModal">
+
+</button>
+    {{/if}}
+    {{/each}}
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div>
+      <div class="modal-body">
+        
+      </div>
+    </div>
+  </div>
 </div>
-<p>{{post.body}}</p>
-{{#if post.image}}
-<img src="{{post.image}}" alt="Post image">
-{{/if}}
-{{/each}}
+  </section>
+  
+</div>

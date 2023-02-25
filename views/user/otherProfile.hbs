@@ -1,23 +1,34 @@
-<h1>{{user.firstName}} Profile</h1>
 
-<button class="follow-btn btn text-danger" type="button" value="{{user.id}}">
-  {{#isFollow userFollower=currentUser userFollowed=user}}
-    <span>Unfollow</span>
-    <i class="bi bi-heart-fill"></i>
-  {{else}}
-    <span>Follow</span>
-    <i class="bi bi-heart"></i>
-  {{/isFollow}}
-</button>
 
-{{#mutualFollow userFollower=currentUser userFollowed=user}}
-<h3>Love Compatibility</h3>
-<p>{{compatibility.love}}</p>
-<p>{{compatibility.loveRating}}</p>
+<div class="d-flex min-vh-100 gap-2">
 
-<h3>Friendship Compatibility</h3>
-<p>{{compatibility.friendship}}</p>
-<p>{{compatibility.friendshipRating}}</p>
-{{else}}
-<p>Your are not friends with {{user.firstName}} yet</p>
-{{/mutualFollow}}
+  {{> sidebar}}
+
+  <section class="other-user-profile-page">
+    <h1>{{user.firstName}} Profile</h1>
+
+    <button class="follow-btn btn text-danger" type="button" value="{{user.id}}">
+      {{#isFollow userFollower=currentUser userFollowed=user}}
+        <span>Unfollow</span>
+        <i class="bi bi-heart-fill"></i>
+      {{else}}
+        <span>Follow</span>
+        <i class="bi bi-heart"></i>
+      {{/isFollow}}
+    </button>
+
+    {{#mutualFollow userFollower=currentUser userFollowed=user}}
+    <h3>Love Compatibility</h3>
+    <p>{{compatibility.love}}</p>
+    <p>{{compatibility.loveRating}}</p>
+
+    <h3>Friendship Compatibility</h3>
+    <p>{{compatibility.friendship}}</p>
+    <p>{{compatibility.friendshipRating}}</p>
+    {{else}}
+    <p>Your are not friends with {{user.firstName}} yet</p>
+    {{/mutualFollow}}
+  </section>
+
+
+</div>

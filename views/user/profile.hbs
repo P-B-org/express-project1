@@ -1,26 +1,70 @@
-<h1>Profile</h1>
-<h4> {{currentUser.firstName}}</h4>
-<h4> {{currentUser.sunSign.sun}}</h4>
-<h4> {{currentUser.moonSign.moon}}</h4>
-<h4> {{currentUser.ascendantSign.ascendant}}</h4>
-<h4> {{dailyHoroscope.description}}</h4>
-<img src="{{currentUser.image}}" alt="User sun sign profile picture">
+<div class="d-flex gap-2">
 
-<h3>{{currentUser.firstName}} follows:</h3>
-<ul>
-  {{#each currentUser.followeds as |follow|}}
-    <li>{{follow.followed.firstName}}</li>
-  {{/each}}
-</ul>
+  {{> sidebar}}
 
-<h3>Who follows {{currentUser.firstName}}:</h3>
-<ul>
-  {{#each currentUser.followers as |follow|}}
-    <li>{{follow.follower.firstName}}</li>
-  {{/each}}
-</ul>
+  <div class="profile-page">
 
-<a class="btn btn-primary" href="/notifications">
-    <span>Notifications</span>
-    <i class="bi bi-bell"></i>
-</a>
+  <section class="header">
+    <img class="user-img" src="{{currentUser.image}}" alt="User sun sign profile picture">
+    <div>
+      <h4>{{currentUser.firstName}}</h4>
+      <span class="d-flex astral-description">
+        <div class="d-flex">
+          <i class="bi bi-sun"></i>
+          <p>{{currentUser.sunSign.name}}</p>
+        </div>
+        <div class="d-flex">
+          <i class="bi bi-moon"></i>
+          <p>{{currentUser.moonSign.name}}</p>
+        </div>
+        <div class="d-flex">
+          <i class="bi bi-arrow-up"></i>
+          <p>{{currentUser.ascendantSign.name}}</p>
+        </div>
+      </span>
+    </div>
+  </section>
+
+  <section>
+    <h5><i>{{dailyHoroscope.description}}</i></h5>
+    <h6>Today's luck...</h6>
+    <p><strong>Number: </strong>{{dailyHoroscope.lucky_number}}</p>
+    <p><strong>Time: </strong>{{dailyHoroscope.lucky_time}}</p>
+  </section>
+
+  <section class="astral-card row">
+    <div class="col-lg-4 col-sm-12">
+      <i class="bi bi-sun"></i>
+      <p> {{currentUser.sunSign.sun}}</p>
+    </div>
+    <div class="col-lg-4 col-sm-12">
+      <i class="bi bi-moon"></i>
+      <p> {{currentUser.moonSign.moon}}</p>
+    </div>
+    <div class="col-lg-4 col-sm-12">
+      <i class="bi bi-arrow-up"></i>
+      <p> {{currentUser.ascendantSign.ascendant}}</p>
+    </div>
+  </section>
+
+  {{!-- <h3>{{currentUser.firstName}} follows:</h3>
+  <ul>
+    {{#each currentUser.followeds as |follow|}}
+      <li>{{follow.followed.firstName}}</li>
+    {{/each}}
+  </ul>
+
+  <h3>Who follows {{currentUser.firstName}}:</h3>
+  <ul>
+    {{#each currentUser.followers as |follow|}}
+      <li>{{follow.follower.firstName}}</li>
+    {{/each}}
+  </ul> --}}
+
+  <a class="btn btn-primary" href="/notifications">
+      <span>Notifications</span>
+      <i class="bi bi-bell"></i>
+  </a>
+
+  </div>
+</div>

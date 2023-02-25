@@ -1,0 +1,53 @@
+.profile-page {
+    margin: 0 30px;
+}
+
+.profile-page .header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.profile-page .header .user-img {
+    width: 200px;
+    border-radius: 50%;
+    margin-right: 50px;
+}
+
+.astral-description div i {
+    padding-top: 5px;
+    padding-right: 5px;
+}
+
+.astral-description div p {
+    padding-right: 15px;
+}
+
+.profile-page .astral-card {
+    text-align: center;
+    padding: 20px 0;
+    border-bottom: 1px solid #050505;
+    border-top: 1px solid #050505
+}
+
+.profile-page .astral-card div,
+.explore-page,
+.other-user-profile-page {
+    display: flex;
+    flex-direction: column;
+}
+
+.explore-page .astral-description > div i {
+    padding-left: 10px;
+}
+
+.bigPostImages {
+    width: 500px;
+    display: flex;
+    align-items: center;
+}
+
+
+
+
+
