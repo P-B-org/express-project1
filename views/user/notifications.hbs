@@ -1,7 +1,20 @@
-<h1> Notifications</h1>
 
-<ul>
-{{#each notifications as |notification|}}
-<li>{{notification.message}}</li>
-{{/each}}
-</ul>
+<div class="d-flex gap-2">
+
+  {{> sidebar}}
+
+  <div class="notifications-page">
+  <h1>Notifications</h1>
+
+    <ul style="list-style:none">
+      {{#each notifications as |notification|}}
+      {{#if notification.read}}
+      <li style="color:red" class="notification">{{notification.message}}</li>
+      {{else}}
+      <li class="notification">{{notification.message}}</li>
+      {{/if}}
+      {{/each}}
+    </ul>
+  </div>
+
+</div>

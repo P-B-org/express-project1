@@ -1,3 +1,8 @@
+
+body {
+    position: relative;
+    font-family: 'Zen Kaku Gothic Antique', sans-serif;
+
 @import url('https://fonts.cdnfonts.com/css/comfort-zone');
 @import url('https://fonts.cdnfonts.com/css/florethila');
 
@@ -5,13 +10,19 @@
     margin: 0 30px;
 }
 
-.profile-page .header {
+.profile-page .header,
+.other-profile-page .header-other-profile
+{
     display: flex;
     align-items: center;
+    padding: 30px;
     margin-bottom: 30px;
+    background-color: #2D5C6D;
+    color: #FFFFFF;
+    width: 100%;
 }
 
-.profile-page .header .user-img {
+.user-img {
     width: 200px;
     border-radius: 50%;
     margin-right: 50px;
@@ -35,7 +46,8 @@
 
 .profile-page .astral-card div,
 .explore-page,
-.other-user-profile-page {
+.notifications-page
+{
     display: flex;
     flex-direction: column;
 }
@@ -45,10 +57,18 @@
 }
 
 .bigPostImages {
-    width: 500px;
-    display: flex;
-    align-items: center;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 30%);
 }
+
+
+.notification {
+    border-bottom: 1px solid #050505;
+    padding: 20px;
+    width: 50vw;
 
 .background-container {
     margin: 0;
@@ -58,7 +78,6 @@
     height: 105vh;
     background-size: cover;
     color: white;
-
 }
 
 .navbar>.container {
@@ -85,8 +104,6 @@
     border-color: white;
     border-width: 30%;
     border-radius: 20%;
-
-
 }
 
 #allForm,
