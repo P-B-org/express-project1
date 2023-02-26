@@ -34,10 +34,20 @@ hbs.registerHelper("mutualFollow", function (options) {
   }
 });
 
-hbs.registerHelper("isRead", function (options) {
-  const { notification } = options.hash;
+hbs.registerHelper("isOwner", function (options) {
+  const { currentUser, postOwnerId } = options.hash;
 
-  if (notification.read === true) {
+  if (currentUser && currentUser.id === postOwnerId) {
+    return options.fn(this);
+  } else {
+    return options.inverse(this);
+  }
+});
+
+hbs.registerHelper("hasLike", function (options) {
+  const { currentUser, post } = options.hash;
+
+  if (currentUser.likes.some((like) => like.post.toString() === post.id)) {
     return options.fn(this);
   } else {
     return options.inverse(this);

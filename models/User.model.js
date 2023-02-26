@@ -67,17 +67,17 @@ const userSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-    toObject: { 
+    toObject: {
       virtuals: true,
-    }
+    },
   }
 );
 
 userSchema.virtual("followers", {
- ref: "Follow",
- foreignField: "followed",
- localField: "_id",
- justOne: false,
+  ref: "Follow",
+  foreignField: "followed",
+  localField: "_id",
+  justOne: false,
 });
 
 userSchema.virtual("followeds", {
@@ -85,10 +85,17 @@ userSchema.virtual("followeds", {
   foreignField: "follower",
   localField: "_id",
   justOne: false,
- })
+});
 
 userSchema.virtual("notifications", {
   ref: "Notification",
+  foreignField: "user",
+  localField: "_id",
+  justOne: false,
+});
+
+userSchema.virtual("likes", {
+  ref: "Like",
   foreignField: "user",
   localField: "_id",
   justOne: false,

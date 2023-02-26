@@ -40,25 +40,33 @@
 
     </section>
 
+    {{#mutualFollow userFollower=currentUser userFollowed=user}}
     <section>
-      {{#mutualFollow userFollower=currentUser userFollowed=user}}
-      <h3>Love Compatibility</h3>
-      <p>{{compatibility.love}}</p>
-      <p>{{compatibility.loveRating}}</p>
-
-      <h3>Friendship Compatibility</h3>
-      <p>{{compatibility.friendship}}</p>
-      <p>{{compatibility.friendshipRating}}</p>
-      {{else}}
-      <p>Your are not friends with {{user.firstName}} yet</p>
-      {{/mutualFollow}}
+      <div class="row compatibility-info"> 
+        <div class="col-6">
+          <div class="wrapper">
+            <a href="#nav"><span>Love Compatibility</span></a>
+          </div>
+          <div class="expandable" id="nav">
+            <h3 class="compatibility-percentage">{{compatibility.loveRating}}</h3>
+            <p>{{compatibility.love}}</p>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="wrapper">
+            <a href="#nav2"><span>Friendship Compatibility</span></a>
+          </div>
+          <div class="expandable" id="nav2">
+            <h3 class="compatibility-percentage">{{compatibility.friendshipRating}}</h3>
+            <p>{{compatibility.friendship}}</p>
+          </div>
+        </div>
+      </div> 
     </section>
+    {{else}}
+      <p>Your are not friends with {{user.firstName}} yet</p>
+    {{/mutualFollow}}
 
   </div>
-
-
-    
-
-
 
 </div>

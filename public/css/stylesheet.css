@@ -3,6 +3,34 @@ body {
     font-family: 'Zen Kaku Gothic Antique', sans-serif;
 }
 
+.hidden {
+    display: block;
+}
+
+.sidebar {
+    width: 280px;
+    position: sticky;
+    top: 0;
+    left: 0;
+    background-color: #FFFFFF;
+}
+
+.sidebar-title {
+    font-family: 'Florethila', sans-serif;
+    font-size: 30px;
+    color: #2D5C6D;
+}
+
+.sidebar-links li a {
+    color: #2D5C6D;
+}
+
+.sidebar-links li a:hover {
+    color: #8FEBE0;
+    font-weight: bolder;
+    background-color: #FFFFFF;
+}
+
 .profile-page .header,
 .other-profile-page .header-other-profile {
     display: flex;
@@ -10,7 +38,8 @@ body {
     justify-content: space-between;
     padding: 30px;
     margin-bottom: 30px;
-    background-color: #2D5C6D;
+    background: rgb(45,92,109);
+    background: linear-gradient(90deg, rgba(45,92,109,1) 0%, rgba(143,235,224,1) 50%, rgba(255,255,255,1) 100%);
     color: #FFFFFF;
     width: 100%;
 }
@@ -19,6 +48,12 @@ body {
     width: 200px;
     border-radius: 50%;
     margin-right: 50px;
+}
+
+.tl-user-img {
+    width: 60px;
+    border-radius: 50%;
+    margin-right: 5px;
 }
 
 .astral-description div i {
@@ -33,9 +68,23 @@ body {
 
 .profile-page .astral-card {
     text-align: center;
-    padding: 20px 0;
-    border-bottom: 1px solid #050505;
-    border-top: 1px solid #050505
+    padding: 20px;
+    margin: 0 20px;
+}
+
+.profile-page .daily-advice {
+    padding: 15px 0;
+    margin: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid black;
+    border-radius: 4px;
+}
+
+.profile-page .daily-advice div span {
+    padding: 0 10px;
 }
 
 .profile-page .astral-card div,
@@ -59,7 +108,7 @@ body {
 
 .notification {
     border-bottom: 1px solid #050505;
-    padding: 20px;
+    padding: 10px;
     width: 50vw;
 }
 
@@ -106,7 +155,6 @@ body {
     justify-content: center;
 }
 
-
 .title {
     font-size: 55px;
 }
@@ -132,7 +180,6 @@ body {
 
 .edits-btn {
     display: flex;
-    flex-direction: row;
     padding: 40px;
     margin-left: 50px;
     margin-right: 50px;
@@ -140,11 +187,16 @@ body {
 }
 
 .container-post {
+    height: 100vh;
     display: flex;
     flex-direction: column;
+    align-items: center;
     padding: 40px;
-    margin-left: 300px;
     background-image: linear-gradient(to right, white, #8FEBE0, white);
+}
+
+.container-post h1 {
+    margin-bottom: 20px;
 }
 
 .timeline-page {
@@ -153,13 +205,28 @@ body {
     align-items: center;
     justify-content: center;
     width: 100vw;
+    background-image: url("/images/wallpapers/bg.png") ;
+    background-position: center;
+    background-size: cover;
+}
+
+.timeline-page h1 {
+    margin: 20px 0;
+    
 }
 
 .post-structure {
-    padding: 20px;
-    margin-bottom: 30px;
+    padding: 15px;
     width: 50vw;
-    border-bottom: #050505 1px solid;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    margin: 10px 0;
+}
+
+.post-structure .post-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .post-structure .user-profile {
@@ -170,4 +237,80 @@ body {
 .post-structure .post-content {
     display: flex;
     flex-direction: column;
+} 
+
+.compatibility-info {
+    margin: 0 20px;
+}
+
+.expandable {
+  background: #fff;
+  overflow: hidden;
+  color: #000;
+  text-align: justify; 
+
+  transition: all .5s ease-in-out;
+  transform-origin: left top;
+  transform: scaleY(0);
+}
+
+.expandable:target {
+  transform: scaleY(1);
+}
+
+.compatibility-percentage {
+    text-align: center;
+    border: 3px #8FEBE0 solid;
+    border-radius: 10px;
+    padding: 5px;
+    margin-top: 10px;
+}
+
+.wrapper a {
+    display: block;
+    width: fit-content;
+    padding: 5px 10px;
+    line-height: 40px;
+    font-size: 18px;
+    font-family: sans-serif;
+    text-decoration: none;
+    color: #333;
+    border: 2px solid #333;
+    letter-spacing: 2px;
+    text-align: center;
+    position: relative;
+    transition: all .35s;
+}
+
+.wrapper a span {
+    position: relative;
+    z-index: 2;
+}
+
+.wrapper a:after {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: #8FEBE0;
+    transition: all .35s;
+}
+
+.wrapper a:hover {
+    color: #fff;
+}
+
+.wrapper a:hover:after {
+    width: 100%;
+}
+
+.search-btn {
+    background-color: #8FEBE0;
+    color:#FFFFFF
+}
+
+.search-btn:hover {
+    color:#050505
 }

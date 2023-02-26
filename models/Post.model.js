@@ -1,24 +1,34 @@
 const mongoose = require("mongoose");
 
-const postSchema = new mongoose.Schema({
-  body: {
-    type: String,
-    required: [true, "Your post must have some content!"],
-    maxLength: [320, "Max length must be 320 characters"]
+const postSchema = new mongoose.Schema(
+  {
+    body: {
+      type: String,
+      required: [true, "Your post must have some content!"],
+    },
+    user: {
+      type: mongoose.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
+    image: {
+      type: [String],
+    },
   },
-  user: {
-    type: mongoose.Types.ObjectId,
-    ref: "User",
-    required: true
-  },
-  image: {
-    type: [String]
-  },
-},
-{
-  timestamps: true,
-}
+  {
+    timestamps: true,
+    toObject: {
+      virtuals: true,
+    },
+  }
 );
 
+postSchema.virtual("likes", {
+  ref: "Like",
+  foreignField: "post",
+  localField: "_id",
+  justOne: false,
+});
+
 const Post = mongoose.model("Post", postSchema);
-module.exports = Post
+module.exports = Post;

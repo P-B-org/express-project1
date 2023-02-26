@@ -34,25 +34,27 @@
       </div>
   </section>
 
-  <section>
-    <h5><i>{{dailyHoroscope.description}}</i></h5>
+  <section class="daily-advice">
+    <h5 class="mb-3 text-center"><i>{{dailyHoroscope.description}}</i></h5>
     <h6>Today's luck...</h6>
-    <p><strong>Number: </strong>{{dailyHoroscope.lucky_number}}</p>
-    <p><strong>Time: </strong>{{dailyHoroscope.lucky_time}}</p>
+    <div class="d-flex">
+      <span><strong>Number: </strong>{{dailyHoroscope.lucky_number}}</span>
+      <span><strong>Time: </strong>{{dailyHoroscope.lucky_time}}</span>
+    </div>
   </section>
 
-  <section class="astral-card row">
-    <div class="col-lg-4 col-sm-12">
+  <section class="astral-card">
+    <div class="m-3">
       <i class="bi bi-sun"></i>
-      <p> {{currentUser.sunSign.sun}}</p>
+      <p class="mt-2"> {{currentUser.sunSign.sun}}</p>
     </div>
-    <div class="col-lg-4 col-sm-12">
+    <div class="m-3">
       <i class="bi bi-moon"></i>
-      <p> {{currentUser.moonSign.moon}}</p>
+      <p class="mt-2"> {{currentUser.moonSign.moon}}</p>
     </div>
-    <div class="col-lg-4 col-sm-12">
+    <div class="m-3">
       <i class="bi bi-arrow-up"></i>
-      <p> {{currentUser.ascendantSign.ascendant}}</p>
+      <p class="mt-2"> {{currentUser.ascendantSign.ascendant}}</p>
     </div>
   </section>
 

@@ -31,6 +31,7 @@ module.exports.explore = (req, res, next) => {
 
 module.exports.timeline = (req, res, next) => {
   Post.find()
+    .sort({ createdAt: -1 })
     .populate({
       path: "user",
       populate: {

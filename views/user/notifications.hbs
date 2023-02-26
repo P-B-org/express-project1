@@ -9,11 +9,14 @@
     <ul style="list-style:none">
       {{#each notifications as |notification|}}
       {{#if notification.read}}
-      <li style="color:red" class="notification">{{notification.message}}</li>
+      <li style="background-color:#2D5C6D; border-radius:4px; color:#FFFFFF" class="notification">{{notification.message}}</li>
       {{else}}
       <li class="notification">{{notification.message}}</li>
       {{/if}}
+      {{else}}
+      <p>You have notificiations yet :(</p>
       {{/each}}
+      
     </ul>
   </div>
 

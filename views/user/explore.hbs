@@ -4,14 +4,16 @@
   <div class="explore-page mt-4">
 
     <form action="/explore" method="GET">
-        <input type="search" style="width:500px" name="search" placeholder="See who's using AppSign!" />
-        <button type="submit">Search</button>
+        <div class="input-group">
+            <input style="width:500px" type="search" name="search" class="form-control rounded" placeholder="See who's using AppSign!" aria-label="Search" aria-describedby="search-addon" />
+            <button type="submit" class="btn search-btn">Search</button>
+        </div>
     </form>
 
     <ul style="list-style:none" class="users-list">
         {{#each users as |user|}}
         <li class="d-flex">
-        <a class="text-decoration-none" href="/profile/{{user.id}}">{{user.firstName}}{{user.lastName}}</a>
+        <a class="text-decoration-none link-dark" href="/profile/{{user.id}}"><strong>{{user.firstName}} {{user.lastName}}</strong></a>
             <span class="d-flex astral-description">
                 <div class="d-flex">
                     <i class="bi bi-sun"></i>

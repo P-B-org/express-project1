@@ -1,15 +1,12 @@
-<div
-  class="d-flex flex-column flex-shrink-0 p-3 bg-light vh-100"
-  style="width: 280px; position: sticky; top: 0; left: 0"
->
+<div class="d-flex flex-column flex-shrink-0 p-3 vh-100 sidebar">
   <a
     href="/timeline"
-    class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none"
+    class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none"
   >
-    <span class="fs-4">AppSign</span>
+    <span class="sidebar-title">AppSign</span>
   </a>
   <hr />
-  <ul class="nav nav-pills flex-column mb-auto">
+  <ul class="nav nav-pills flex-column mb-auto sidebar-links">
     <li class="nav-item">
       <a href="/timeline" class="nav-link" aria-current="page">Timeline</a>
     </li>
@@ -27,7 +24,8 @@
   <div class="dropdown">
     <a
       href="#"
-      class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
+      class="d-flex align-items-center text-decoration-none dropdown-toggle"
+      style="color:#2D5C6D"
       id="dropdownUser2"
       data-bs-toggle="dropdown"
       aria-expanded="false"
@@ -39,9 +37,12 @@
         height="32"
         class="rounded-circle me-2"
       />
-      <strong>{{currentUser.firstName}}</strong>
+      <strong style="color:#2D5C6D">{{currentUser.firstName}}</strong>
     </a>
-    <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+    <ul
+      class="dropdown-menu text-small shadow sidebar-links"
+      aria-labelledby="dropdownUser2"
+    >
       <li><a class="dropdown-item" href="/settings">Settings</a></li>
       <li><a class="dropdown-item" href="/profile">Profile</a></li>
       <li><hr class="dropdown-divider" /></li>
