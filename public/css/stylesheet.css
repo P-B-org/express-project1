@@ -80,7 +80,7 @@ body {
 }
 
 .profile-page .daily-advice {
-    padding: 15px 0;
+    padding: 15px 5px;
     margin: 0 20px;
     display: flex;
     flex-direction: column;
@@ -147,7 +147,7 @@ body {
     font-family: 'Florethila', sans-serif;
 }
 
-#allContainer a {
+.allContainer #titleContainer a {
     color: white;
     font-weight: bolder;
     text-decoration: none;
@@ -157,7 +157,7 @@ body {
     border-radius: 10px;
 }
 
-#allContainer a:hover {
+.allContainer #titleContainer .join-btn:hover {
     color: black;
     background-color: #FFFFFF;
 }
@@ -234,6 +234,11 @@ body {
 }
 
 .post-structure .user-profile {
+    display: flex;
+    align-items: center;
+}
+
+.post-structure .post-header .user-profile .user-info {
     display: flex;
     align-items: center;
 }
@@ -320,14 +325,76 @@ body {
     color:#050505
 }
 
+@media screen and (max-width: 1050px) {
+    .timeline-page .post-structure .post-header .user-profile {
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .profile-page .header,
+    .other-profile-page .header-other-profile {
+        flex-direction: column-reverse;
+    }
+  }
+
+@media screen and (max-width: 900px) {
+    .timeline-page .post-structure {
+        width: 60vw;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .profile-page .header .header-info,
+    .other-profile-page .header-other-profile > div {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .profile-page .header .header-info div {
+        margin-top: 10px;
+    }
+
+    .profile-page .header .header-info img,
+    .other-profile-page .header-other-profile > div .user-img {
+        margin: 10px 0;
+    }
+
+    .sidebar {
+        width: 200px;
+    }
+}
+
 @media screen and (max-width: 700px) {
     .containerForm {
         width: 60vw;
     }
+
+    .post-btns {
+        display: flex;
+        flex-direction: column;
+    }
   }
+
+@media screen and (max-width: 600px) {
+    .sidebar {
+        width: 150px;
+    }
+}
 
 @media screen and (max-width: 500px) {
     .containerForm {
         width: 70vw;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .sidebar {
+        width: 100px;
+    }
+
+    .sidebar .sidebar-links li a::before {
+        overflow: hidden;
     }
 }
