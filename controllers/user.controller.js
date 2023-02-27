@@ -98,23 +98,6 @@ module.exports.notifications = (req, res, next) => {
     .catch(next);
 };
 
-module.exports.settings = (req, res, next) => {
-  res.render("user/settings");
-};
-
-module.exports.editPassword = (req, res, next) => {
-  res.render("user/editPassword");
-};
-
-module.exports.doEditPassword = (req, res, next) => {
-  const renderWithErrors = (errors) => {
-    const userData = { ...req.body };
-    {
-      res.render("user/editPassword");
-    }
-  };
-};
-
 module.exports.editProfile = (req, res, next) => {
   res.render("user/edit");
 };
@@ -138,36 +121,23 @@ module.exports.doEditProfile = async (req, res, next) => {
     yearOfBirth
   );
 
-  User.findOne({ email: { $ne: req.user.email } })
-    .then(async (user) => {
-      if (user) {
-        renderWithErrors({ email: "Email already in use" });
-      } else {
-        const signs = await astralCalc(
-          timeOfBirth,
-          dayOfBirth,
-          monthOfBirth,
-          yearOfBirth
-        );
+  const userBody = {
+    ...req.body,
+    ...signs.ids,
+  };
 
-        const userBody = {
-          ...req.body,
-          ...signs.ids,
-        };
+  if (req.file) {
+    userBody.image = req.file.path;
+  } else {
+    userBody.image = `/images/signs/${signs.names.sunSign}.png`;
+  }
 
-        if (req.file) {
-          userBody.image = req.file.path;
-        } else {
-          userBody.image = `/images/signs/${signs.names.sunSign}.png`;
-        }
-
-        return User.findByIdAndUpdate(req.user.id, userBody, {
-          new: true,
-          runValidators: true,
-        }).then((userUpdated) => {
-          res.redirect("/profile");
-        });
-      }
+  User.findByIdAndUpdate(req.user.id, userBody, {
+    new: true,
+    runValidators: true,
+  })
+    .then((userUpdated) => {
+      res.redirect("/profile");
     })
     .catch((err) => {
       if (err instanceof mongoose.Error.ValidationError) {

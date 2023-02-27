@@ -1,34 +1,18 @@
 <div class="d-flex gap-2">
   {{> sidebar}}
 
-  <div class="explore-page mt-4">
+  <div class="explore-page stars-bg p-3" style="width: 100vw;">
 
     <form action="/explore" method="GET">
         <div class="input-group">
-            <input style="width:500px" type="search" name="search" class="form-control rounded" placeholder="See who's using AppSign!" aria-label="Search" aria-describedby="search-addon" />
+            <input type="search" name="search" class="form-control rounded" placeholder="See who's using AppSign!" aria-label="Search" aria-describedby="search-addon" />
             <button type="submit" class="btn search-btn">Search</button>
         </div>
     </form>
 
-    <ul style="list-style:none" class="users-list">
+    <ul style="list-style:none">
         {{#each users as |user|}}
-        <li class="d-flex">
-        <a class="text-decoration-none link-dark" href="/profile/{{user.id}}"><strong>{{user.firstName}} {{user.lastName}}</strong></a>
-            <span class="d-flex astral-description">
-                <div class="d-flex">
-                    <i class="bi bi-sun"></i>
-                    <p>{{user.sunSign.name}}</p>
-                </div>
-                <div class="d-flex">
-                    <i class="bi bi-moon"></i>
-                    <p>{{user.moonSign.name}}</p>
-                </div>
-                <div class="d-flex">
-                    <i class="bi bi-arrow-up"></i>
-                    <p>{{user.ascendantSign.name}}</p>
-                </div>
-            </span>
-        </li>
+        {{> usersList}}
         {{/each}}
     </ul>
   </div>

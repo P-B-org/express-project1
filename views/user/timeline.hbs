@@ -2,7 +2,7 @@
 
   {{> sidebar}}
 
-  <section class="timeline-page" style="position:relative">
+  <section class="timeline-page stars-bg">
     <h1>See what's happening!</h1>
 
     {{#each posts as |post|}}
@@ -45,7 +45,7 @@
       <div class="post-content mt-2">
         <p class="px-3">{{post.body}}</p>
         {{#if post.image}}
-        <img class="post-img mb-3 data-bs-toggle="modal" data-bs-target="#exampleModal"" style="width:200px" src="{{post.image}}" alt="Post image" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <img class="post-img mb-3" style="width:300px" src="{{post.image}}" alt="Post image" data-bs-toggle="modal" data-bs-target="#exampleModal">
         {{/if}}
         <p class="px-3 text-muted"><small>Posted on {{post.createdAt}}</small></p>
       </div>
@@ -55,15 +55,15 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+{{!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div>
       <div class="modal-body">
-        
+
       </div>
     </div>
   </div>
-</div>
+</div> --}}
   </section>
   
 </div>

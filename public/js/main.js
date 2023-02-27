@@ -73,20 +73,18 @@ window.onload = () => {
     };
   });
 
-  const postImages = document.querySelectorAll(".post-img");
-  const modalNode = document.querySelector(".modal-body");
+  // const postImages = document.querySelectorAll(".post-img");
+  // const modalNode = document.querySelector(".modal-body");
 
-  postImages.forEach((postImage) => {
-    postImage.onclick = () => {
-      const imageNode = document.createElement("img");
-      imageNode.classList.add("bigPostImages");
-      imageNode.src = postImage.src;
-      modalNode.appendChild(imageNode);
-    };
-  });
-
-  modalNode.onclick = () => {
-    imageNode.classList.remove("bigPostImages");
-    imageNode.src = "";
-  };
+  // postImages.forEach((postImage) => {
+  //   postImage.onclick = () => {
+  //     const imageNode = document.createElement("img");
+  //     imageNode.classList.add("bigPostImages");
+  //     imageNode.src = postImage.src;
+  //     modalNode.appendChild(imageNode);
+  //   };
+  // });
+  // modalNode.onclick = () => {
+  //   imageNode.remove();
+  // };
 };

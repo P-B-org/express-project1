@@ -4,7 +4,12 @@ body {
 }
 
 .hidden {
-    display: block;
+    display: none;
+}
+
+.btns-style {
+    background-color: #2D5C6D;
+    color:#FFFFFF
 }
 
 .sidebar {
@@ -72,6 +77,12 @@ body {
     margin: 0 20px;
 }
 
+.profile-page .astral-card div {
+    background-color: #FFFFFF;
+    padding: 10px;
+    border-radius: 4px;
+}
+
 .profile-page .daily-advice {
     padding: 15px 0;
     margin: 0 20px;
@@ -81,6 +92,7 @@ body {
     justify-content: center;
     border: 2px solid black;
     border-radius: 4px;
+    background-color: #FFFFFF;
 }
 
 .profile-page .daily-advice div span {
@@ -89,7 +101,8 @@ body {
 
 .profile-page .astral-card div,
 .explore-page,
-.notifications-page {
+.notifications-page
+{
     display: flex;
     flex-direction: column;
 }
@@ -113,11 +126,11 @@ body {
 }
 
 .background-container {
+    font-family: 'Zen Kaku Gothic Antique', sans-serif;
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
     background-image: url("/images/wallpapers/galaxy.jpeg");
-    width: 100vw;
-    height: 105vh;
+    background-size: cover;
     background-size: cover;
     color: white;
 }
@@ -145,7 +158,12 @@ body {
     font-size: 30px;
     border-color: white;
     border-width: 30%;
-    border-radius: 20%;
+    border-radius: 10px;
+}
+
+#allContainer a:hover {
+    color: black;
+    background-color: #FFFFFF;
 }
 
 #allForm,
@@ -153,6 +171,10 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.containerForm {
+    width: 40vw;
 }
 
 .title {
@@ -167,23 +189,6 @@ body {
     height: 735px;
     margin-top: 0px;
 
-}
-
-.container-settings {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-left: 300px;
-    background-image: linear-gradient(to right, white, #8FEBE0, white);
-}
-
-.edits-btn {
-    display: flex;
-    padding: 40px;
-    margin-left: 50px;
-    margin-right: 50px;
-    justify-content: center;
 }
 
 .container-post {
@@ -203,8 +208,11 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     width: 100vw;
+}
+
+.stars-bg {
     background-image: url("/images/wallpapers/bg.png") ;
     background-position: center;
     background-size: cover;
@@ -282,7 +290,8 @@ body {
     transition: all .35s;
 }
 
-.wrapper a span {
+.wrapper a span,
+.wrapper a i {
     position: relative;
     z-index: 2;
 }

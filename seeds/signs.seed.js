@@ -1,3 +1,4 @@
+require("dotenv").config();
 require("../config/db.config");
 
 const mongoose = require("mongoose");
@@ -19,19 +20,20 @@ mongoose.connection.once("open", () => {
 
       return Sign.create(signs);
     })
-    .then(createdSigns => {
+    .then((createdSigns) => {
       const mappedCompatibilities = compatibilities.map((compatibility) => {
         return {
           ...compatibility,
-          signs: compatibility.signs.map(sign => {
-            return createdSigns.find((createdSign) => createdSign.name === sign).id
+          signs: compatibility.signs.map((sign) => {
+            return createdSigns.find((createdSign) => createdSign.name === sign)
+              .id;
           }),
         };
       });
-      return Compatibility.create(mappedCompatibilities)
+      return Compatibility.create(mappedCompatibilities);
     })
-    .then(createdCompatibilities => {
-      console.log('Compabilities created')
+    .then((createdCompatibilities) => {
+      console.log("Compabilities created");
     })
     .catch((err) => console.error(err))
     .finally(() => {

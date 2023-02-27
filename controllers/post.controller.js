@@ -31,14 +31,6 @@ module.exports.doNewPost = (req, res, next) => {
     });
 };
 
-module.exports.doDelete = (req, res, next) => {
-  Post.findByIdAndDelete(req.params.id)
-    .then((post) => {
-      res.send("Post deleted");
-    })
-    .catch(next);
-};
-
 module.exports.like = (req, res, next) => {
   const user = req.user.id;
   const post = req.params.id;
@@ -61,4 +53,12 @@ module.exports.like = (req, res, next) => {
       }
     })
     .catch((err) => next(err));
+};
+
+module.exports.doDelete = (req, res, next) => {
+  Post.findByIdAndDelete(req.params.id)
+    .then((post) => {
+      res.send("Post deleted");
+    })
+    .catch(next);
 };
