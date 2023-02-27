@@ -3,10 +3,6 @@ body {
     font-family: 'Zen Kaku Gothic Antique', sans-serif;
 }
 
-.hidden {
-    display: none;
-}
-
 .btns-style {
     background-color: #2D5C6D;
     color:#FFFFFF
@@ -174,7 +170,7 @@ body {
 }
 
 .containerForm {
-    width: 40vw;
+    width: 50vw;
 }
 
 .title {
@@ -322,4 +318,16 @@ body {
 
 .search-btn:hover {
     color:#050505
+}
+
+@media screen and (max-width: 700px) {
+    .containerForm {
+        width: 60vw;
+    }
+  }
+
+@media screen and (max-width: 500px) {
+    .containerForm {
+        width: 70vw;
+    }
 }
